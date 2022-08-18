@@ -59,7 +59,18 @@ class Arm:
     def getCurrentPosition(self):
         print("Absolute Gripper Position: " + str(self.gripperPos))
         print("Absolute Arm Position: " + str(self.armPos))
- 
+
+class Arm:
+    def __init__(self):
+        pass
+
+class Gripper:
+    def __init__(self):
+        pass
+class LocationTracker():
+    def __init__(self):
+        pass
+
 class Base:
     def __init__(self):
         self.wheels = hub.port.E.motor
