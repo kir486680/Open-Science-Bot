@@ -26,7 +26,7 @@ H2_3 = np.concatenate((H2_3, [[0,0,0,1]]))
 
 H0_2 = np.dot(H0_1,H1_2)
 H0_3 = np.dot(H0_2, H2_3)
-print(H0_3)
+
 
 #DH way of calculating homogenious matrix
 PT = [[-(90.0*180.0)*np.pi,-(90.0*180.0)*np.pi,0,a1+d1], 
@@ -83,17 +83,30 @@ homgen_2_3 = np.array([[np.cos(d_h_table[i,0]), -np.sin(d_h_table[i,0]) * np.cos
                       [0, 0, 0, 1]])  
  
 homgen_0_3 = homgen_0_1 @ homgen_1_2 @ homgen_2_3
-print(homgen_0_3)
 
 
-#Jacobian Matrix
+
+#Jacobian Inverse Matrix
 
 Jinv = np.array([[0,0,1], [1,0,0], [0,-1,0]])
 
-desiredCoord = np.array([[4],[3],[2]])
+desiredCoord = np.array([4,3, 2])
 res = Jinv @ desiredCoord
 print(res)
-print(np.dot(Jinv, desiredCoord))
+
+for i in range(len(res)):
+    #base
+    if i == 0:
+        deg = dist2deg(res[i], 4.2) 
+        base.move(deg)
+    #arm
+    if i == 1:
+        deg = dist2deg(res[i], 4.2) 
+        arm.move(deg) 
+    #gripper
+    if i == 2:
+        deg = dist2deg(res[i], 4.2) 
+        gripper.move(deg)
 
 #gear diameter is 4.2
 def rotationsToDistance(rotations, diameter):
@@ -101,4 +114,6 @@ def rotationsToDistance(rotations, diameter):
 def degreesToDistance(degrees, diameter):
     distancePerDegree = np.pi * diameter / 360
     return distancePerDegree * degrees
-
+def dist2deg(desiredDistance, diameter):
+    distancePerDegree = np.pi * diameter / 360
+    return desiredDistance/distancePerDegree
