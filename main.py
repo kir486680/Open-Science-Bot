@@ -39,11 +39,11 @@ class Arm:
         self.updateCurrentPosition()
     def grip(self):#delta is -10
         #self.gripper.run_to_position(78,speed=50)
-        self.gripper.run_for_degrees(40,30)
+        self.gripper.run_for_degrees(30,30)
         #self.updateCurrentPosition()
     def release(self):
         #self.gripper.run_to_position(93,speed=50)
-        self.gripper.run_for_degrees(-40,-30)
+        self.gripper.run_for_degrees(-30,-30)
         #self.updateCurrentPosition()
     def releaseIntoBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
@@ -60,21 +60,13 @@ class Arm:
         print("Absolute Gripper Position: " + str(self.gripperPos))
         print("Absolute Arm Position: " + str(self.armPos))
 
-class Arm:
-    def __init__(self):
-        pass
 
-class Gripper:
-    def __init__(self):
-        pass
-class LocationTracker():
-    def __init__(self):
-        pass
 
 class Base:
     def __init__(self):
         self.wheels = hub.port.E.motor
         self.wheelsPos = 0
+        
     def setDefault(self):
         self.wheels.preset(self.wheels.get()[0])
     def moveForward(self):
@@ -232,7 +224,12 @@ board.load_labwear('MetalHolder', locationStart = -2000)
 #arms.setDefault()
 
 debug = False
+def dist2deg(desiredDistance, diameter):
+    distancePerDegree = np.pi * diameter / 360
+    return desiredDistance/distancePerDegree
 
+def dist2deg2(desiredDistance):
+    return desiredDistance/0.02666667
 if debug ==False:
     
 
@@ -255,25 +252,126 @@ if debug ==False:
     #liquid.runTest(testData)
 
   
-    #arms.grip()
+    #gripper = hub.port.D.motor
+    #gripper.run_for_degrees(40,30)
+    #gripper.run_for_degrees(-20,-30)
     #arms.release()
-    #base.moveTo(-2000)
-    #time.sleep(5)
-    #base.moveTo(-100)
-    #time.sleep(2)
+
     
+    beaker1 = (7.5,0.4)
+    beaker2 = (7.5,8.2)
+    beaker3 = (15,4.5)
+    metalSample2 = (0,3.4)
+    
+    curX = 0
+    curY = 0
+    arms.moveDown()
+    time.sleep(2)
+    arms.grip()
+    time.sleep(2)
     arms.moveUp()
-    #Testing going down and up
+    time.sleep(2)
+
+
+    dist = dist2deg(beaker1[0]-curX,1.3)
+    wheels_x = hub.port.E.motor
+    wheels_x.run_for_degrees(dist, -30)
+    dist = dist2deg(beaker1[1]-curY,4.2)
+    wheels_y = hub.port.A.motor
+    wheels_y.run_for_degrees(dist, -30)
+    curX = beaker1[0]-curX
+    curY = beaker1[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
     
 
 
-    #time.sleep(2)
-    #arms.moveDown()
-    #time.sleep(2)
-    #arms.grip()
-    #liquid.runTest(testData)
-    #arms.moveUp()
+    dist = dist2deg(beaker2[1]-curY,4.2)
+    wheels_y.run_for_degrees(dist, -30)
+    curY += beaker2[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
     
+
+    dist = dist2deg(beaker3[0]-curX,1.3)
+    wheels_x.run_for_degrees(dist, -30)
+    dist = dist2deg(beaker3[1]-curY,4.2)
+    wheels_y.run_for_degrees(dist, 30)
+    curX += beaker3[0]-curX
+    curY += beaker3[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+
+
+    arms.release()
+    print(curX)
+    print(curY)
+    
+
+    dist = dist2deg(metalSample2[0]-curX,1.3)
+    wheels_x = hub.port.E.motor
+    wheels_x.run_for_degrees(dist, 30)  #Important to be positive!
+    dist = dist2deg(metalSample2[1]-curY,4.2)
+    wheels_y = hub.port.A.motor
+    wheels_y.run_for_degrees(dist, -30)
+    curX += metalSample2[0]-curX
+    curY += metalSample2[1]-curY
+    arms.moveDown()
+    time.sleep(2)
+    arms.grip()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+    
+    dist = dist2deg(beaker1[0]-curX,1.3)
+    wheels_x = hub.port.E.motor
+    wheels_x.run_for_degrees(dist, -30)
+    dist = dist2deg(beaker1[1]-curY,4.2)
+    wheels_y = hub.port.A.motor
+    wheels_y.run_for_degrees(dist, -30)
+    curX = beaker1[0]-curX
+    curY = beaker1[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+    
+
+
+    dist = dist2deg(beaker2[1]-curY,4.2)
+    wheels_y.run_for_degrees(dist, -30)
+    curY += beaker2[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+    
+
+    dist = dist2deg(beaker3[0]-curX,1.3)
+    wheels_x.run_for_degrees(dist, -30)
+    dist = dist2deg(beaker3[1]-curY,4.2)
+    wheels_y.run_for_degrees(dist, 30)
+    curX += beaker3[0]-curX
+    curY += beaker3[1]-curY
+    time.sleep(2)
+    arms.moveDown()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+
+
+    arms.release()
    
     """
     

@@ -115,5 +115,5 @@ def degreesToDistance(degrees, diameter):
     distancePerDegree = np.pi * diameter / 360
     return distancePerDegree * degrees
 def dist2deg(desiredDistance, diameter):
-    distancePerDegree = np.pi * diameter / 360
+    distancePerDegree = (np.pi * diameter) / 360
     return desiredDistance/distancePerDegree
