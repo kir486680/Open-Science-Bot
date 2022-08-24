@@ -18,7 +18,12 @@ y_wheels = hub.port.A.motor
 
 dist = dist2deg(2,4.2)
 wheels_y = hub.port.A.motor
-wheels_y.run_for_degrees(dist, -30)
+wheels_y.run_for_degrees(-8, 30)  
+# -, - -> 
+# +, - -> 
+#+, + <-
+#-, + <-
+
 """
 print(gripper.get())
 gripper.run_for_degrees(-20,-30)
