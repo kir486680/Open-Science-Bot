@@ -15,15 +15,19 @@ gripper = hub.port.D.motor
 arm = hub.port.B.motor #the highest it goes is  -120
 x_wheels = hub.port.E.motor
 y_wheels = hub.port.A.motor
-
-dist = dist2deg(2,4.2)
-wheels_y = hub.port.A.motor
-wheels_y.run_for_degrees(-8, 30)  
 # -, - -> 
 # +, - -> 
 #+, + <-
 #-, + <-
-
+print(hub.motion.yaw_pitch_roll())
+time.sleep(2)
+x_wheels.run_to_position(-200,speed=50)
+time.sleep(2)
+print(hub.motion.yaw_pitch_roll())
+time.sleep(2)
+x_wheels.run_to_position(-500,speed=50)
+time.sleep(2)
+print(hub.motion.yaw_pitch_roll())
 """
 print(gripper.get())
 gripper.run_for_degrees(-20,-30)
