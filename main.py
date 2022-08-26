@@ -21,7 +21,7 @@ class Arm:
         self.updateCurrentPosition()
     def moveDown(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
-        self.arm.run_for_degrees(220, speed=-30)
+        self.arm.run_for_degrees(300, speed=-20)
         #self.updateCurrentPosition() 
     def moveLower(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
@@ -30,7 +30,7 @@ class Arm:
     def moveUp(self):
       
         #self.arm.run_to_degrees_counted(45,30) 
-        self.arm.run_for_degrees(-225, speed=30)
+        self.arm.run_for_degrees(-300, speed=20)
         #self.arm.run_to_degrees_counted(0,30)
         #self.updateCurrentPosition()
     def moveTo(self,x):
@@ -47,11 +47,11 @@ class Arm:
         #self.updateCurrentPosition()
     def fromBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(-290, speed=30)
+        self.arm.run_for_degrees(-310, speed=30)
         
     def intoBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(290, speed=-30)
+        self.arm.run_for_degrees(310, speed=-30)
        
     def updateCurrentPosition(self):
         abs_pos = self.arm.get_position() 
@@ -182,20 +182,22 @@ class Board():
 
             
 
-#liquid = LiquidHandler('COM3',9600)
+#liquid = LiquidHandler('COM6',9600)
 
-
-#testData.append("<2,20,1>")
-
+#testData = []
+#testData.append("<2,30,1>")
+#testData.append("<1,30,1>")
+#liquid.runTest(testData)
+#liquid.ser.close()
 
 arms = Arm()
 base = Base()
 board = Board(arms, base)
 board.load_labwear('MetalHolder', taken = [1,1,0])
-board.load_labwear('Beaker', size = 0, locationStart = (7.5,0))
-board.load_labwear('Beaker', size = 0, locationStart = (7.5,7.8))
-board.load_labwear('Beaker', size = 1, locationStart = (15,0))
-board.load_labwear('MetalHolder', locationStart = (25,0))
+board.load_labwear('Beaker', size = 0, locationStart = (0,7.5))
+board.load_labwear('Beaker', size = 0, locationStart = (7.5,7.5))
+board.load_labwear('Beaker', size = 1, locationStart = (7.5,15))
+board.load_labwear('MetalHolder', locationStart = (7.5,0))
 #print(board.peripherals[0].coordinates)
 #board.performExperiment("fdf")
 
@@ -211,81 +213,99 @@ def dist2deg2(desiredDistance):
     return desiredDistance/0.02666667
 
 
-if debug ==False:
 
-    
-    
-
+if debug ==True:
     wheels_x = hub.port.E.motor
     wheels_y = hub.port.A.motor
-    metalSamples = [[0.0,0.0],[0.0,3.4], [0.0,6.8]]
-    beaker1 = (7.5,0.4)
-    beaker2 = (7.5,8.2)
-    beaker3 = (15,4.5)
-    curX = 0.0
-    curY = 0.0
-    def rotate(currentY, targetY, diam):
-        dist = dist2deg(math.dist([targetY], [currentY]),4.2)
+    metalSamples = [[0.0,0.0],[3,0]]
+    
+    beaker1 = (0,7.5)
+    beaker2 = (7.8,7.5)
+    beaker3 = (15.6,7.5)
+    metalDeposit = (15.6,0)
+    curX = 0
+    curY = 0
+
+
+
+    def rotateY(currentY, targetY, diam):
+        dist = dist2deg(math.dist([targetY], [currentY]),diam)
         if  targetY-currentY< 0:
             
-            wheels_y.run_for_degrees(dist, 30) 
+            wheels_y.run_for_degrees(dist, 15) 
         else:
-            wheels_y.run_for_degrees(-dist, -30) 
+            wheels_y.run_for_degrees(-dist, -15) 
+        currentY += targetY-currentY
+        print(currentY)
+        return currentY
+    def rotateX(currentX, targetX, diam):
+        dist = dist2deg(math.dist([targetX], [currentX]),diam)
+        if  targetX-currentX < 0:
+            wheels_x.run_for_degrees(dist, 25) 
+        else:
+            wheels_x.run_for_degrees(-dist, -25) 
+        currentX += targetX-currentX 
+        print(currentX)
+        return currentX
     for metalX, metalY in metalSamples:
-
-        dist = dist2deg(metalX-curX,1.3)
-        wheels_x.run_for_degrees(dist, 30)  
-        rotate(curY, metalY, 4.2)
-        curX += metalX-curX
-        curY += metalY-curY
-        print(curX, curY)
-        time.sleep(3)
+        print("Starting Itteration")
+        curX = rotateX(curX, metalX,1.3)
+        curY = rotateY(curY, metalY, 4.2)
+        time.sleep(5)
+        print("The current is: ", curX, curY)
         arms.moveDown()
         time.sleep(2)
         arms.grip()
         time.sleep(2)
         arms.moveUp()
         time.sleep(2)
-        
-        dist = dist2deg(beaker1[0]-curX,1.3)
-        wheels_x.run_for_degrees(dist, -30)  
-        rotate(curY, beaker1[1], 4.2)
-        curX += beaker1[0]-curX
-        curY += beaker1[1]-curY
-        print(curX, curY)
-        time.sleep(3)
-        time.sleep(2)
+
+        curX = rotateX(curX, beaker1[0],1.3)
+        curY = rotateY(curY, beaker1[1], 4.2)
+        time.sleep(5)
+        print("The current is: ", curX, curY)
         arms.intoBeaker()
         time.sleep(2)
         arms.fromBeaker()
         time.sleep(2)
         
 
-
-        rotate(curY, beaker2[1], 4.2)
-        curY += beaker2[1]-curY
-        print(curX, curY)
-        time.sleep(3)
-        time.sleep(2)
+        curX = rotateX(curX, beaker2[0],1.3)
+        curY = rotateY(curY, beaker2[1], 4.2)
+        time.sleep(5)
+        print("The current is: ", curX, curY)
         arms.intoBeaker()
         time.sleep(2)
         arms.fromBeaker()
         time.sleep(2)
         
 
-        dist = dist2deg(beaker3[0]-curX,1.3)
-        wheels_x.run_for_degrees(dist, -30)
-        rotate(curY, beaker3[1], 4.2)
-        curX += beaker3[0]-curX
-        curY += beaker3[1]-curY
-        print(curX, curY)
-        time.sleep(3)
-        time.sleep(2)
+        curX = rotateX(curX, beaker3[0],1.3)
+        curY = rotateY(curY, beaker3[1], 4.2)
+        time.sleep(5)
+        print("The current is: ", curX, curY)
         arms.intoBeaker()
         time.sleep(2)
         arms.fromBeaker()
         time.sleep(2) 
    
+        curX = rotateX(curX, metalDeposit[0],1.3)
+        curY = rotateY(curY, metalDeposit[1], 4.2)
+        time.sleep(5)
+        print("The current is: ", curX, curY)
+        arms.intoBeaker()
+        time.sleep(2)
         arms.release()
+        time.sleep(2) 
+        arms.fromBeaker()
         time.sleep(2)
 
+
+else:
+    arms.moveDown()
+    time.sleep(2)
+    arms.grip()
+    time.sleep(2)
+    arms.moveUp()
+    time.sleep(2)
+    arms.release()
