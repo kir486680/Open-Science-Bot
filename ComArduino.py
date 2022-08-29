@@ -150,4 +150,4 @@ class LiquidHandler():
       time.sleep(5)
 
 
-#liquid.ser.close()
+

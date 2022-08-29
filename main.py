@@ -10,7 +10,7 @@ time.sleep(1)
 class Arm:
     def __init__(self):
         self.gripper = hub.port.D.motor
-        self.arm = hub.port.B.motor #the highest it goes is  -120
+        self.arm = hub.port.F.motor #the highest it goes is  -120
         self.gripperPos = 0
         self.armPos = 0
         
@@ -21,7 +21,7 @@ class Arm:
         self.updateCurrentPosition()
     def moveDown(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
-        self.arm.run_for_degrees(300, speed=-20)
+        self.arm.run_for_degrees(340, speed=-40)
         #self.updateCurrentPosition() 
     def moveLower(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
@@ -30,7 +30,7 @@ class Arm:
     def moveUp(self):
       
         #self.arm.run_to_degrees_counted(45,30) 
-        self.arm.run_for_degrees(-300, speed=20)
+        self.arm.run_for_degrees(-340, speed=40)
         #self.arm.run_to_degrees_counted(0,30)
         #self.updateCurrentPosition()
     def moveTo(self,x):
@@ -47,11 +47,11 @@ class Arm:
         #self.updateCurrentPosition()
     def fromBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(-310, speed=30)
+        self.arm.run_for_degrees(-340, speed=40)
         
     def intoBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(310, speed=-30)
+        self.arm.run_for_degrees(340, speed=-40)
        
     def updateCurrentPosition(self):
         abs_pos = self.arm.get_position() 
@@ -215,35 +215,36 @@ def dist2deg2(desiredDistance):
 
 
 if debug ==True:
-    wheels_x = hub.port.E.motor
-    wheels_y = hub.port.A.motor
+    wheels_x = hub.port.A.motor
+    wheels_y = hub.port.B.motor
     metalSamples = [[0.0,0.0],[3,0]]
     
-    beaker1 = (0,7.5)
-    beaker2 = (7.8,7.5)
-    beaker3 = (15.6,7.5)
+    beaker1 = (0,5)
+    beaker2 = (7.8,5)
+    beaker3 = (15.6,5)
     metalDeposit = (15.6,0)
     curX = 0
     curY = 0
 
+    arms.release()
 
-
+    
     def rotateY(currentY, targetY, diam):
         dist = dist2deg(math.dist([targetY], [currentY]),diam)
         if  targetY-currentY< 0:
             
-            wheels_y.run_for_degrees(dist, 15) 
-        else:
             wheels_y.run_for_degrees(-dist, -15) 
+        else:
+            wheels_y.run_for_degrees(dist, 15) 
         currentY += targetY-currentY
         print(currentY)
         return currentY
     def rotateX(currentX, targetX, diam):
         dist = dist2deg(math.dist([targetX], [currentX]),diam)
         if  targetX-currentX < 0:
-            wheels_x.run_for_degrees(dist, 25) 
+            wheels_x.run_for_degrees(dist, 40) 
         else:
-            wheels_x.run_for_degrees(-dist, -25) 
+            wheels_x.run_for_degrees(-dist, -40) 
         currentX += targetX-currentX 
         print(currentX)
         return currentX

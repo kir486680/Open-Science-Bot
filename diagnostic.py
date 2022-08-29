@@ -12,7 +12,7 @@ def dist2deg(desiredDistance, diameter):
     return desiredDistance/distancePerDegree
 
 gripper = hub.port.D.motor
-arm = hub.port.B.motor #the highest it goes is  -120
+arm = hub.port.A.motor #the highest it goes is  -120
 x_wheels = hub.port.C.motor
 # - - -> forward 
 # + - -> forward 
