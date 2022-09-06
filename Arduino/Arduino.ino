@@ -226,7 +226,7 @@ void pumpMotor(){
     digitalWrite(motor1pin1, HIGH);
     digitalWrite(motor1pin2, LOW);
 
-    delay((amountPump*0.8-8)*1000);
+    delay(((amountPump*0.7657)+-7.8928)*1000);
     digitalWrite(motor1pin1, LOW);
     digitalWrite(motor1pin2, LOW);
   }
@@ -234,7 +234,7 @@ void pumpMotor(){
     analogWrite(enB, 255);
     digitalWrite(motor2pin1, HIGH);
     digitalWrite(motor2pin2, LOW);
-    delay((amountPump*0.8-8)*1000);
+    delay(((amountPump*0.7657)+-7.8928)*1000);
     digitalWrite(motor2pin1, LOW);
     digitalWrite(motor2pin2, LOW);
   }

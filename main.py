@@ -21,16 +21,16 @@ class Arm:
         self.updateCurrentPosition()
     def moveDown(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
-        self.arm.run_for_degrees(340, speed=-40)
+        self.arm.run_for_degrees(320, speed=-40)
         #self.updateCurrentPosition() 
     def moveLower(self): # the desired delta is 350
         #self.arm.run_to_position(180, 'counterclockwise', 30) #-400 acceptable
-        self.arm.run_for_degrees(350, speed=-30)
+        self.arm.run_for_degrees(340, speed=-30)
         #self.updateCurrentPosition() 
     def moveUp(self):
       
         #self.arm.run_to_degrees_counted(45,30) 
-        self.arm.run_for_degrees(-340, speed=40)
+        self.arm.run_for_degrees(-320, speed=40)
         #self.arm.run_to_degrees_counted(0,30)
         #self.updateCurrentPosition()
     def moveTo(self,x):
@@ -39,7 +39,7 @@ class Arm:
         self.updateCurrentPosition()
     def grip(self):#delta is -10
         #self.gripper.run_to_position(78,speed=50)
-        self.gripper.run_for_degrees(30,30)
+        self.gripper.run_for_degrees(35,30)
         #self.updateCurrentPosition()
     def release(self):
         #self.gripper.run_to_position(93,speed=50)
@@ -47,11 +47,11 @@ class Arm:
         #self.updateCurrentPosition()
     def fromBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(-340, speed=40)
+        self.arm.run_for_degrees(-320, speed=40)
         
     def intoBeaker(self):
         #self.gripper.run_to_position(205,speed=50)
-        self.arm.run_for_degrees(340, speed=-40)
+        self.arm.run_for_degrees(320, speed=-40)
        
     def updateCurrentPosition(self):
         abs_pos = self.arm.get_position() 
@@ -217,16 +217,14 @@ def dist2deg2(desiredDistance):
 if debug ==True:
     wheels_x = hub.port.A.motor
     wheels_y = hub.port.B.motor
-    metalSamples = [[0.0,0.0],[3,0]]
+    metalSamples = [[0.0,0.0],[5,0]]
     
     beaker1 = (0,5)
     beaker2 = (7.8,5)
-    beaker3 = (15.6,5)
-    metalDeposit = (15.6,0)
+    metalDeposit = (15.6,-3)
     curX = 0
     curY = 0
 
-    arms.release()
 
     
     def rotateY(currentY, targetY, diam):
@@ -281,14 +279,6 @@ if debug ==True:
         time.sleep(2)
         
 
-        curX = rotateX(curX, beaker3[0],1.3)
-        curY = rotateY(curY, beaker3[1], 4.2)
-        time.sleep(5)
-        print("The current is: ", curX, curY)
-        arms.intoBeaker()
-        time.sleep(2)
-        arms.fromBeaker()
-        time.sleep(2) 
    
         curX = rotateX(curX, metalDeposit[0],1.3)
         curY = rotateY(curY, metalDeposit[1], 4.2)

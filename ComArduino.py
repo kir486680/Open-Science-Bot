@@ -151,3 +151,11 @@ class LiquidHandler():
 
 
 
+#liquid = LiquidHandler('COM6',9600)
+
+#testData = []
+#testData.append("<1,200,1>")
+#testData.append("<2,200,1>")
+#liquid.runTest(testData)
+#liquid.ser.close()
+#print("Done")
