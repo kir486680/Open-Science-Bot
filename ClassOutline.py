@@ -1,5 +1,7 @@
 from abc import ABCMeta, ABC, abstractmethod
 import numpy as np
+
+
 class Component(metaclass = ABCMeta):
     @abstractmethod
     def move(self):
