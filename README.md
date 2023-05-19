@@ -1,5 +1,8 @@
 # Open-Science-Bot
 
+![Tests](https://github.com/kir486680/Open-Science-Bot/actions/workflows/python-app.yml/badge.svg)
+
+
 ## Software TODO:
 - [ ] establish wiki/documentation of code practices 
 - [ ] create unit tests for basic kinematics
