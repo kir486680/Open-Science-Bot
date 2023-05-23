@@ -7,29 +7,11 @@ import numpy as np
 hub = Hub()
 time.sleep(1)
 
-def dist2deg(desiredDistance, diameter):
-    distancePerDegree = np.pi * diameter / 360
-    return desiredDistance/distancePerDegree
 
-gripper = hub.port.D.motor
-arm = hub.port.A.motor #the highest it goes is  -120
-x_wheels = hub.port.C.motor
-# - - -> forward 
-# + - -> forward 
-# - + <- back 
-# + + -< back
-y_wheels = hub.port.F.motor
-# -, - -> 
-# +, - -> 
-#+, + <-
-#-, + <-
+motors = [hub.port.A.motor, hub.port.B.motor, hub.port.D.motor] 
+motors[0].run_for_degrees(40, speed=60)
+#motors[0].pid(1,2,3)
+
+sensor = hub.port.C.device
 while True:
-    userInput = input("Please enter your command:")
-    if userInput.lower() == "done":
-        print("Shutting Down")
-        break
-    try:
-        exec(userInput)
-    except Exception as e:
-        print(e)
-        print("Try again!")
+    print(sensor.get())

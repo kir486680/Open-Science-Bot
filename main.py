@@ -11,10 +11,8 @@ class GantryRobot:
         self.motor_resolution = motor_resolution  # degrees of rotation for one full rotation of the motor
         self.cm_per_rotation = np.array([1, 1, 1])  # cm moved per full rotation of the gear in X, Y, Z
         self.current_position = np.array([0, 0, 0])  # current position of the robot in cm
+        self.color_sensor = hub.port.C.device
         self.motors = [hub.port.A.motor, hub.port.B.motor, hub.port.D.motor]  # adjust motor ports as needed
-        self.motors[0].run_at_speed(20)
-        self.motors[1].run_at_speed(20)
-        self.motors[2].run_at_speed(20)
 
     def set_cm_per_rotation(self, cm_per_rotation):
         # set cm moved per full rotation of the gear in X, Y, Z
@@ -48,11 +46,23 @@ class GantryRobot:
         motor_rotations = self.inverse_kinematics(target_position)
         print(f"Motor rotations: {motor_rotations}")
         for motor, rotation in zip(self.motors, motor_rotations):
-            motor.run_to_position(rotation)
+            print(f"Motor: {motor}, rotation: {rotation}")
+            rotation_degrees = rotation * self.motor_resolution  # convert rotations to degrees
+            print(f"Rotation degrees: {rotation_degrees}")
+            if rotation_degrees >= 0:
+                #pass
+                motor.run_for_degrees(abs(rotation_degrees), speed=-60)
+            else:
+                #pass
+                if self.color_sensor.get()[0] != None:
+                    print("limit reached")
+                else:
+                    motor.run_for_degrees(abs(rotation_degrees), speed=60)
 
 # Example usage
 robot = GantryRobot(gear_ratios=[1, 1, 1])  # adjust gear_ratios as needed
-robot.set_cm_per_rotation([4, 4, 1])  # adjust cm_per_rotation as needed
-target_position = np.array([10, 20, 30])  # target position in cm
+robot.set_cm_per_rotation([4, 12.56, 1])  # adjust cm_per_rotation as needed
+target_position = np.array([0, 0, 0])  # target position in cm
 robot.move_to_position(target_position)
 print(f"Current position after movement: {robot.current_position}")
+
