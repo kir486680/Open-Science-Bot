@@ -62,7 +62,7 @@ class GantryRobot:
 # Example usage
 robot = GantryRobot(gear_ratios=[1, 1, 1])  # adjust gear_ratios as needed
 robot.set_cm_per_rotation([4, 12.56, 1])  # adjust cm_per_rotation as needed
-target_position = np.array([0, 0, 0])  # target position in cm
+target_position = np.array([20, 20, 0])  # target position in cm
 robot.move_to_position(target_position)
 print(f"Current position after movement: {robot.current_position}")
 
