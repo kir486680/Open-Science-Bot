@@ -109,6 +109,7 @@ class Gantry:
                     motor.run_for_degrees(abs(rotation_degrees), speed=-60)
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
+                time.sleep(1)
 
     
 # Example usage
