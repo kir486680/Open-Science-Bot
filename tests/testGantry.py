@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LegoBrain import Gantry  # assuming the GantryRobot class is in a file named gantry_robot.py
+from lego_brain import Gantry  # assuming the GantryRobot class is in a file named gantry_robot.py
 
 class TestGantryRobot(unittest.TestCase):
     def setUp(self):
