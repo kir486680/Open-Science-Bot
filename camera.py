@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 
 class Camera:
-    def __init__(self, camera_type):
+    def __init__(self, camera_type="pi"):
         """Camera constructor. Creates different types of camera objects depending on the type.
         
         Args:
@@ -44,11 +44,11 @@ class Camera:
         """Previews the camera for a few seconds, or until the user presses the q key.
         """
 
-        if self.type == "pi":
+        if self.camera_type == "pi":
             self.camera.start_preview()
             time.sleep(15)  # Preview for 15 seconds
             self.camera.stop_preview()
-        elif self.type == "usb":
+        elif self.camera_type == "usb":
             
             # Define the desired window dimensions
             window_width = 640
