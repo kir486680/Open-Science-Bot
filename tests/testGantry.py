@@ -1,10 +1,10 @@
 import unittest
 import numpy as np
-from main import GantryRobot  # assuming the GantryRobot class is in a file named gantry_robot.py
+from lego_brain import Gantry  # assuming the GantryRobot class is in a file named gantry_robot.py
 
 class TestGantryRobot(unittest.TestCase):
     def setUp(self):
-        self.robot = GantryRobot(gear_ratios=[1, 1, 1])
+        self.robot = Gantry(gear_ratios=[1, 1, 1])
         self.robot.set_cm_per_rotation([4, 4, 1])
 
     def test_motor_to_cm(self):
