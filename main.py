@@ -1,5 +1,6 @@
 import numpy as np 
-from LegoBrain import Gantry
+from lego_brain import Gantry
+from pump import Pump
 
 #init the main 
 
