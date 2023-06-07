@@ -2,6 +2,7 @@ import picamera
 import time
 import cv2
 import numpy as np
+import io 
 
 class Camera:
     def __init__(self, camera_type="pi"):
@@ -12,6 +13,7 @@ class Camera:
         """
         if camera_type == "pi":
             self.camera = picamera.PiCamera()
+            time.sleep(2)
         elif camera_type == "usb":
             self.camera = cv2.VideoCapture(1)  # Update the camera index as needed
         self.camera_type = camera_type
@@ -20,7 +22,7 @@ class Camera:
         """Destructor for usb camera case, where opencv needs to release system resources.
         """
 
-        if self.type == "usb":
+        if self.camera_type == "usb":
             self.camera.release()
 
     def get_image(self):
@@ -32,8 +34,11 @@ class Camera:
 
         if self.camera_type == "pi":
             # Capture image using picamera and return it as numpy array
-            image = np.empty((480, 640, 3), dtype=np.uint8)
-            self.camera.capture(image, 'bgr')
+            stream = io.BytesIO()
+            self.camera.capture(stream, format='jpeg')
+            stream.seek(0)
+            image = np.frombuffer(stream.getvalue(), dtype=np.uint8)
+            image = cv2.imdecode(image, cv2.IMREAD_COLOR)
             return image
         elif self.camera_type == "usb":
             # Capture frame using OpenCV
