@@ -17,6 +17,14 @@ class Pump:
         """
         self.pins = pins
         self.pwm = pwm
+        GPIO.cleanup()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.pins[0],GPIO.OUT)
+        GPIO.setup(self.pins[1],GPIO.OUT)
+        GPIO.setup(self.pins[2],GPIO.OUT)
+        GPIO.output(self.pins[0],GPIO.LOW)
+        GPIO.output(self.pins[1],GPIO.LOW)
+        self.pump=GPIO.PWM(self.pins[2],1000)
             
     def pump_liquid(self,amount, duration = None):
         """
@@ -26,22 +34,15 @@ class Pump:
             amount (int):  pump amount of liquid in mL
             duraction (float): amount of seconds it should be pumping. Optional
         """
-        GPIO.cleanup()
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pins[0],GPIO.OUT)
-        GPIO.setup(self.pins[1],GPIO.OUT)
-        GPIO.setup(self.pins[2],GPIO.OUT)
-        GPIO.output(self.pins[0],GPIO.LOW)
-        GPIO.output(self.pins[1],GPIO.LOW)
-        pump=GPIO.PWM(self.pins[2],1000)
-        pump.start(25)
+        
+        self.pump.start(25)
         duration = ((amount* 0.775) + -7.8928) 
         end_time = time.time() + duration  # Calculate the end time
         
         while time.time() < end_time:
             GPIO.output(self.pins[0], GPIO.HIGH)
             GPIO.output(self.pins[1], GPIO.LOW)
-            pump.ChangeDutyCycle(self.pwm)
+            self.pump.ChangeDutyCycle(self.pwm)
             print("Time left ", time.time() - end_time)
         GPIO.cleanup()
         
