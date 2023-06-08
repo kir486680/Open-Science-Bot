@@ -7,7 +7,7 @@ import cv2
 #init the main 
 
 
-if __name__ == "__main__":
+def main():
     gantry = Gantry()
     gantry.set_cm_per_rotation([4, 12.56, 5])
     target_position = np.array([0, -10,-2])
@@ -22,3 +22,7 @@ if __name__ == "__main__":
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
     # print("Hello World")
+
+
+if __name__ == "__main__":
+    main()
