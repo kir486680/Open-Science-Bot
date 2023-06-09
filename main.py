@@ -1,10 +1,12 @@
 import numpy as np 
 from lego_brain import Gantry
+import concurrent.futures
 from pump import Pump
 from camera import Camera
 from gripper import Gripper
 import threading
 import cv2
+from tasks import GripperTask, PumpTask, CameraTask, MoveRobotTask
 #init the main 
 
 
@@ -16,41 +18,18 @@ def main():
     gripper = Gripper(17)
     
 
-    def grip_task():
-        gripper.grip()
-    
-    def pump_task():
-        #pump.pump_liquid(15)
-        print("Pumping")
-    
-    def camera_task():
-        image = camera.get_image() 
-        print(image.shape)
+    gripper_task = GripperTask(gripper)
+    #pump_task = PumpTask(pump)
+    camera_task = CameraTask(camera)
+    move_robot_task = MoveRobotTask(gantry)
 
-    def move_robot():
-        target_position = np.array([0, 0,4])
-        gantry.move_to_position(target_position)
-        
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        executor.submit(gripper_task.execute())
+        #executor.submit(pump_task.execute())
+        executor.submit(camera_task.execute())
+        executor.submit(move_robot_task.execute())
 
-    grip_thread = threading.Thread(target = grip_task)
-    pump_thread = threading.Thread(target = pump_task)
-    camera_thread = threading.Thread(target = camera_task)
-    robot_thread = threading.Thread(target=move_robot)
-
-    #start the tasks
-    # grip_thread.start()
-    # camera_thread.start()
-    # robot_thread.start()
-
-    # grip_thread.join()
-    # camera_thread.join()
-    # robot_thread.join()
-    print("all taks done")
-    image = camera.get_image() 
-    cv2.imshow("image", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    print("Hello World")
+        concurrent.futures.wait([gripper_task, camera_task, move_robot_task])
 
 
 if __name__ == "__main__":
