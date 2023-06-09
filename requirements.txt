@@ -1,0 +1,5 @@
+mindstorms==0.1.2
+numpy==1.23.1
+opencv_python==4.6.0.66
+picamera==1.13
+pyserial==3.5
