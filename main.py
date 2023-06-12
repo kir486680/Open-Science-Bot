@@ -1,39 +1,27 @@
-import numpy as np 
+import numpy as np
+import cv2
 from lego_brain import Gantry
 from pump import Pump
 from camera import Camera
 from gripper import Gripper
-import threading
-import cv2
-#init the main 
+
+# init the main
 
 
 def main():
     gantry = Gantry()
-    pump = Pump([23,24,25])
+    #pump = Pump([23,24,25])
     #pump.pump_liquid(15)
-    #camera = Camera()
+    camera = Camera()
     gantry.set_cm_per_rotation([4, 12.56, 5])
     gripper = Gripper(17)
-    
-    target_position = np.array([0, 0,-4])
+    target_position = np.array([0, 0, -4])
     gantry.move_to_position(target_position)
     gripper.ungrip()
-
-    
-    def pump_task():
-        
-        print("Pumping")
-    
-    def camera_task():
-        image = camera.get_image() 
-        print(image.shape)
-
- 
-    #image = camera.get_image() 
-    # cv2.imshow("image", image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    image = camera.get_image()
+    cv2.imshow("image", image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     print("Hello World")
 
 

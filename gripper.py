@@ -18,36 +18,33 @@ GPIO.setup(servo, GPIO.OUT)
 # duty cycle for 180 degree = (2/20)*100 = 10%
 
 
-
 class Gripper:
-
-    def __init__(self, pin, pwm = 50):
+    def __init__(self, pin, pwm=50):
         """
         Initializes the Gripper
 
         Args:
-            pin (): 
+            pin ():
             pwm (int): Pule width modulation for servo
         """
-        
+
         self.pin = pin
         self.pwm = pwm
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.OUT)
-        self.p = GPIO.PWM(self.pin, pwm)       # 50hz frequency
+        self.p = GPIO.PWM(self.pin, pwm)  # 50hz frequency
         self.p.start(2.5)
-
 
     def __del__(self):
         """
         Destructor
 
-        Ensures that GPIO is cleaned up properly. TODO: might have to check if this 
+        Ensures that GPIO is cleaned up properly. TODO: might have to check if this
         interferes with the other modules connected to GPIO...
         """
-        
+
         self.p.stop()
-        GPIO.cleanup()  
+        GPIO.cleanup()
 
     def grip(self):
         """
@@ -55,7 +52,7 @@ class Gripper:
         """
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(1) # grip
+            self.p.ChangeDutyCycle(1)  # grip
             time.sleep(0.5)
 
     def ungrip(self):
@@ -64,7 +61,5 @@ class Gripper:
         """
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(5) # ungrip
+            self.p.ChangeDutyCycle(5)  # ungrip
             time.sleep(0.5)
-
-           
