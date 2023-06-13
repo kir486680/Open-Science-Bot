@@ -6,6 +6,7 @@ __pycache__/
 *.so
 
 #Env
+# Robot
 robot/
 
 # Distribution / packaging
