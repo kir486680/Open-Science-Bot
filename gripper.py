@@ -56,7 +56,7 @@ class Gripper:
         """
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(1)  # grip
+            self.p.ChangeDutyCycle(4.8)  # grip
             time.sleep(0.5)
 
     def ungrip(self):
@@ -65,5 +65,5 @@ class Gripper:
         """
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(5)  # ungrip
+            self.p.ChangeDutyCycle(2.0)  # ungrip
             time.sleep(0.5)
