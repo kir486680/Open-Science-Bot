@@ -40,9 +40,13 @@ class Camera:
             # Capture image using picamera and return it as numpy array
             stream = io.BytesIO()
             self.camera.capture(stream, format="jpeg")
-            stream.seek(0)
-            image = np.frombuffer(stream.getvalue(), dtype=np.uint8)
-            image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+            if stream.tell() != 0:
+                stream.seek(0)
+                image = np.frombuffer(stream.getvalue(), dtype=np.uint8)
+                image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+            else:
+                print("Image was not captured correctly. Returning Empty numpy array")
+                return np.array([])
             return image
         elif self.camera_type == "usb":
             # Capture frame using OpenCV
