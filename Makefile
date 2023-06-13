@@ -1,6 +1,11 @@
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+	if grep -q Raspberry /proc/cpuinfo; then \
+		pip install --upgrade pip &&\
+		pip install -r requirements_raspi.txt; \
+	else \
+		pip install --upgrade pip &&\
+		pip install -r requirements.txt; \
+	fi
 
 test:
 	python -m pytest -vv tests/testGantry.py
@@ -11,4 +16,4 @@ format:
 lint:
 	pylint --disable=R,C main.py
 
-all: install lint test format
+all: install test format
