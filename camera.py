@@ -1,20 +1,7 @@
 try:
     import picamera
 except (ImportError, ValueError):
-    # We're not on a Raspberry Pi - use a mock camera
-    class MockCamera:
-        def __init__(self):
-            print("Initialising camera mock")
-        
-        def start_preview(self):
-            print("Starting preview mock")
-
-        def stop_preview(self):
-            print("Stopping preview mock")
-
-        # Add more methods as needed based on what you use from picamera.
-    
-    picamera = MockCamera
+    from utils.mock_imports import MockCamera as picamera
 
 import time
 import cv2

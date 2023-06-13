@@ -1,29 +1,7 @@
 try:
     import RPi.GPIO as GPIO
 except ImportError:
-    # We're not on a Raspberry Pi - use a mock GPIO
-    class MockGPIO:
-        BOARD = "BOARD"
-        OUT = "OUT"
-        IN = "IN"
-        HIGH = "HIGH"
-        LOW = "LOW"
-
-        def setmode(self, mode):
-            print(f"Setting mode {mode}")
-
-        def setup(self, pin, mode):
-            print(f"Setting up pin {pin} with mode {mode}")
-
-        def output(self, pin, state):
-            print(f"Setting pin {pin} state to {state}")
-
-        def cleanup(self):
-            print("Cleaning up")
-
-        # Add more methods and constants as needed based on what you use from RPi.GPIO.
-
-    GPIO = MockGPIO()
+    from utils.mock_imports import MockGPIO as GPIO
 
 from time import sleep
 import time
