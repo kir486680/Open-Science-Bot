@@ -166,9 +166,9 @@ class Gantry:
         with open("state.json", "r") as f:
             state = json.load(f)
 
-        state["x"] = self.current_position[0]
-        state["y"] = self.current_position[1]
-        state["z"] = self.current_position[2]
+        state["x"] = int(self.current_position[0])
+        state["y"] = int(self.current_position[1])
+        state["z"] = int(self.current_position[2])
 
         with open("state.json", "w") as f:
             json.dump(state, f, indent=4)
