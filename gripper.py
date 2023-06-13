@@ -1,4 +1,8 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    # We're not on a Raspberry Pi - use a mock GPIO
+    from utils.mock_imports import MockGPIO as GPIO
 import time
 
 

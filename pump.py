@@ -1,4 +1,8 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    from utils.mock_imports import MockGPIO as GPIO
+
 from time import sleep
 import time
 

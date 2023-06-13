@@ -1,4 +1,8 @@
-import picamera
+try:
+    import picamera
+except (ImportError, ValueError):
+    from utils.mock_imports import MockCamera as picamera
+
 import time
 import cv2
 import numpy as np

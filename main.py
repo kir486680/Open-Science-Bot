@@ -10,8 +10,8 @@ from gripper import Gripper
 
 def main():
     gantry = Gantry()
-    #pump = Pump([23,24,25])
-    #pump.pump_liquid(15)
+    # pump = Pump([23,24,25])
+    # pump.pump_liquid(15)
     camera = Camera()
     gantry.set_cm_per_rotation([4, 12.56, 5])
     gripper = Gripper(17)

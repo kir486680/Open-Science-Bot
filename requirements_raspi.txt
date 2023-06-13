@@ -1,0 +1,10 @@
+opencv_python==4.6.0.66
+mindstorms==0.1.2
+pyserial==3.5
+numpy==1.23.1
+pytest==7.3.2
+picamera
+RPi.GPIO
+ipython
+pylint
+black
