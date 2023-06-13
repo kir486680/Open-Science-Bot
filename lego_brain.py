@@ -34,7 +34,7 @@ class Gantry:
         with open("state.json", "r") as f:
             state = json.load(f)
             self.current_position = np.array([state["x"], state["y"], state["z"]])
-            print (f"Current position: {self.current_position}")
+            # print (f"Current position: {self.current_position}")
             # Move the gantry to the loaded state
             self.move_to_position(self.current_position)
 
@@ -131,10 +131,10 @@ class Gantry:
         if len(target_position) != 3:
             raise ValueError("target_position must contain exactly 3 elements")
         
-        if not all(isinstance(x, (int, float)) for x in target_position):
-            raise ValueError("All elements of target_position must be numeric")
+        """ if not all(isinstance(x, (int, float)) for x in target_position):
+            raise ValueError("All elements of target_position must be numeric") """
 
-        min_x, min_y, min_z, max_x, max_y, max_z = 0, 0, 0, 10, 10, 10  # TODO: @kyrylo replace with your actual bounds
+        min_x, min_y, min_z, max_x, max_y, max_z = 0, 0, 0, 500, 100, 100  # TODO: @kyrylo replace with your actual bounds
         if target_position[0] < min_x or target_position[0] > max_x:
             raise ValueError(f"X must be between {min_x} and {max_x}")
         if target_position[1] < min_y or target_position[1] > max_y:
