@@ -3,14 +3,7 @@
 ![Tests](https://github.com/kir486680/Open-Science-Bot/actions/workflows/python-app.yml/badge.svg)
 
 
-## Software TODO:
-- [ ] establish wiki/documentation of code practices 
-- [ ] create unit tests for basic kinematics
-  - [ ] full range of gantry motion
-  - [ ] math test for inverse/forward kinematics
-- [ ] establish good communication between Arduino and Mindstorms brain
-- [ ] documenting existing code/removing unneeded code
-
+ACTIVE DEVELOPMENT
 
 # Introduction
 The emerging open science movement provides an opportunity to topple decades of scientific inequity by creating tools that enable engagement in science by underprivileged or marginalized communities. In this movement, scientific data, code, and knowledge, are shared openly in findable, accessible, interoperable, and reusable (F.A.I.R.) forms. However, it is not enough to make software and code available. Scientists need the opportunity to test their hypotheses in a way that increases their understanding while contributing to the broader scientific community.  

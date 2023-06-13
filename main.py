@@ -19,10 +19,7 @@ def main():
     gantry.move_to_position(target_position)
     gripper.ungrip()
     image = camera.get_image()
-    cv2.imshow("image", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    print("Hello World")
+    print("image shape:", image.shape)
 
 
 if __name__ == "__main__":
