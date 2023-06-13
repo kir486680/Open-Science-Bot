@@ -34,6 +34,7 @@ class Gantry:
         with open("state.json", "r") as f:
             state = json.load(f)
             self.current_position = np.array([state["x"], state["y"], state["z"]])
+            print (f"Current position: {self.current_position}")
             # Move the gantry to the loaded state
             self.move_to_position(self.current_position)
 
