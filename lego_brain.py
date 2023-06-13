@@ -131,8 +131,8 @@ class Gantry:
         if len(target_position) != 3:
             raise ValueError("target_position must contain exactly 3 elements")
         
-        """ if not all(isinstance(x, (int, float)) for x in target_position):
-            raise ValueError("All elements of target_position must be numeric") """
+        if not all(isinstance(x, (int, float)) for x in target_position):
+            raise ValueError("All elements of target_position must be numeric") 
 
         min_x, min_y, min_z, max_x, max_y, max_z = 0, 0, 0, 500, 100, 100  # TODO: @kyrylo replace with your actual bounds
         if target_position[0] < min_x or target_position[0] > max_x:
