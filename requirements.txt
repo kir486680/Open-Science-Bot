@@ -6,3 +6,4 @@ pytest==7.3.2
 ipython
 pylint
 black
+paho-mqtt
