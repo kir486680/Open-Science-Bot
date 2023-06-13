@@ -1,6 +1,7 @@
 import numpy as np
 from mindstorms import Motor, Hub
 import time
+from typing import Union
 import json
 
 class Gantry:
@@ -36,12 +37,12 @@ class Gantry:
             # Move the gantry to the loaded state
             self.move_to_position(self.current_position)
 
-    def set_cm_per_rotation(self, cm_per_rotation : list | np.ndarray) -> None:
+    def set_cm_per_rotation(self, cm_per_rotation : Union[list, np.ndarray]) -> None:
         """
         Set the cm per rotation for the robot
 
         Args:
-            cm_per_rotation (list | np.ndarray): list of cm per rotation for each axis
+            cm_per_rotation (Union[list, np.ndarray]): list of cm per rotation for each axis
         
         Raises:
             ValueError: If cm_per_rotation is not of length 3, or contains non-numeric values.
@@ -57,7 +58,7 @@ class Gantry:
 
         self.cm_per_rotation = np.array(cm_per_rotation)
 
-    def motor_to_cm(self, motor_rotations : list | np.ndarray):
+    def motor_to_cm(self, motor_rotations : Union[list, np.ndarray]):
         """
         Convert motor rotations to cm
 
@@ -71,7 +72,7 @@ class Gantry:
         distances_moved = gear_rotations * self.cm_per_rotation
         return distances_moved
 
-    def cm_to_motor(self, distances_cm : list | np.ndarray):
+    def cm_to_motor(self, distances_cm : Union[list, np.ndarray]):
         """
         Convert cm to motor rotations
 
@@ -85,7 +86,7 @@ class Gantry:
         motor_rotations = gear_rotations * self.gear_ratios
         return motor_rotations
 
-    def forward_kinematics(self, motor_rotations : list | np.ndarray) -> list | np.ndarray:
+    def forward_kinematics(self, motor_rotations : Union[list, np.ndarray]) -> Union[list, np.ndarray]:
         """
         Calculate forward kinematics
 
@@ -98,7 +99,7 @@ class Gantry:
         self.current_position = self.motor_to_cm(motor_rotations)
         return self.current_position
 
-    def inverse_kinematics(self, target_position: list | np.ndarray) -> list | np.ndarray:
+    def inverse_kinematics(self, target_position: Union[list, np.ndarray]) -> Union[list, np.ndarray]:
         """
         Calculate inverse kinematics
 
@@ -112,12 +113,12 @@ class Gantry:
         self.current_position = target_position
         return motor_rotations
 
-    def move_to_position(self, target_position : list | np.ndarray) -> None:
+    def move_to_position(self, target_position : Union[list, np.ndarray]) -> None:
         """
         Move the robot to the target position
 
         Args:
-            target_position (list | np.ndarray): array of target position for each axis
+            target_position (Union[list, np.ndarray]): array of target position for each axis
 
         Raises:
             ValueError: If target_position is not of length 3, contains non-numeric values, or is out of bounds.
