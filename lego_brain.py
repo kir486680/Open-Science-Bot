@@ -143,9 +143,9 @@ class Gantry:
             0,
             0,
             0,
-            500,
-            100,
-            100,
+            40,
+            20,
+            4.5,
         )  # TODO: @kyrylo replace with your actual bounds
         if target_position[0] < min_x or target_position[0] > max_x:
             raise ValueError(f"X must be between {min_x} and {max_x}")
