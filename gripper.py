@@ -39,14 +39,12 @@ class Gripper:
         GPIO.setup(self.pin, GPIO.OUT)
         self.p = GPIO.PWM(self.pin, pwm)  # 50hz frequency
         self.p.start(2.5)
-        self.is_closed = False # grip state
+        self.is_closed = False  # grip state
 
         # read the state.json file and update the gripper state
         with open("state.json", "r") as f:
             state = json.load(f)
             if state["gripper"] == "closed":
-                self.grip()
-            else:
                 self.ungrip()
 
     def __del__(self):
@@ -66,21 +64,20 @@ class Gripper:
         """
         if self.is_closed:
             raise Exception("Gripper is already closed")
-        
+
         for _ in range(3):
             self.p.ChangeDutyCycle(1)  # grip
             time.sleep(0.5)
-        
+
         self.is_closed = True
-        
+
         # update the state.json file
         with open("state.json", "r") as f:
             state = json.load(f)
             state["gripper"] = "closed"
-        
+
         with open("state.json", "w") as f:
             json.dump(state, f, indent=4)
-            
 
     def ungrip(self):
         """
@@ -88,17 +85,17 @@ class Gripper:
         """
         if not self.is_closed:
             raise Exception("Gripper is already open")
-        
+
         for _ in range(3):
             self.p.ChangeDutyCycle(5)  # ungrip
             time.sleep(0.5)
-        
+
         self.is_closed = False
 
         # update the state.json file
         with open("state.json", "r") as f:
             state = json.load(f)
             state["gripper"] = "open"
-        
+
         with open("state.json", "w") as f:
             json.dump(state, f, indent=4)
