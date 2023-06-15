@@ -8,3 +8,4 @@ RPi.GPIO
 ipython
 pylint
 black
+paho-mqtt

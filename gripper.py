@@ -66,7 +66,7 @@ class Gripper:
             raise Exception("Gripper is already closed")
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(1)  # grip
+            self.p.ChangeDutyCycle(4.8)  # grip
             time.sleep(0.5)
 
         self.is_closed = True
@@ -87,7 +87,7 @@ class Gripper:
             raise Exception("Gripper is already open")
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(5)  # ungrip
+            self.p.ChangeDutyCycle(2.0)  # ungrip
             time.sleep(0.5)
 
         self.is_closed = False
