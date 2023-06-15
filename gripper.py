@@ -4,6 +4,7 @@ except ImportError:
     # We're not on a Raspberry Pi - use a mock GPIO
     from utils.mock_imports import MockGPIO as GPIO
 import time
+import json
 
 
 servo = 17
@@ -38,6 +39,13 @@ class Gripper:
         GPIO.setup(self.pin, GPIO.OUT)
         self.p = GPIO.PWM(self.pin, pwm)  # 50hz frequency
         self.p.start(2.5)
+        self.is_closed = False  # grip state
+
+        # read the state.json file and update the gripper state
+        with open("state.json", "r") as f:
+            state = json.load(f)
+            if state["gripper"] == "closed":
+                self.ungrip()
 
     def __del__(self):
         """
@@ -54,16 +62,40 @@ class Gripper:
         """
         Makes gripper grip
         """
+        if self.is_closed:
+            raise Exception("Gripper is already closed")
 
         for _ in range(3):
             self.p.ChangeDutyCycle(4.8)  # grip
             time.sleep(0.5)
 
+        self.is_closed = True
+
+        # update the state.json file
+        with open("state.json", "r") as f:
+            state = json.load(f)
+            state["gripper"] = "closed"
+
+        with open("state.json", "w") as f:
+            json.dump(state, f, indent=4)
+
     def ungrip(self):
         """
         Makes gripper ungrip
         """
+        if not self.is_closed:
+            raise Exception("Gripper is already open")
 
         for _ in range(3):
             self.p.ChangeDutyCycle(2.0)  # ungrip
             time.sleep(0.5)
+
+        self.is_closed = False
+
+        # update the state.json file
+        with open("state.json", "r") as f:
+            state = json.load(f)
+            state["gripper"] = "open"
+
+        with open("state.json", "w") as f:
+            json.dump(state, f, indent=4)

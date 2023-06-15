@@ -1,6 +1,8 @@
 import numpy as np
 from mindstorms import Motor, Hub
 import time
+from typing import Union
+import json
 
 
 class Gantry:
@@ -29,19 +31,36 @@ class Gantry:
         except:
             print("No hub found, No motors initialized")
 
-    def set_cm_per_rotation(self, cm_per_rotation):
+        # Load the state from the JSON file
+        with open("state.json", "r") as f:
+            state = json.load(f)
+            self.current_position = np.array([state["x"], state["y"], state["z"]])
+            # print (f"Current position: {self.current_position}")
+            # Move the gantry to the loaded state
+            self.move_to_position(self.current_position)
+
+    def set_cm_per_rotation(self, cm_per_rotation: Union[list, np.ndarray]) -> None:
         """
         Set the cm per rotation for the robot
 
         Args:
-            cm_per_rotation (list): list of cm per rotation for each axis
+            cm_per_rotation (Union[list, np.ndarray]): list of cm per rotation for each axis
+
+        Raises:
+            ValueError: If cm_per_rotation is not of length 3, or contains non-numeric values.
 
         Returns:
             None
         """
+        if len(cm_per_rotation) != 3:
+            raise ValueError("cm_per_rotation must contain exactly 3 elements")
+
+        if not all(isinstance(x, (int, float)) for x in cm_per_rotation):
+            raise ValueError("All elements of cm_per_rotation must be numeric")
+
         self.cm_per_rotation = np.array(cm_per_rotation)
 
-    def motor_to_cm(self, motor_rotations):
+    def motor_to_cm(self, motor_rotations: Union[list, np.ndarray]):
         """
         Convert motor rotations to cm
 
@@ -55,7 +74,7 @@ class Gantry:
         distances_moved = gear_rotations * self.cm_per_rotation
         return distances_moved
 
-    def cm_to_motor(self, distances_cm):
+    def cm_to_motor(self, distances_cm: Union[list, np.ndarray]):
         """
         Convert cm to motor rotations
 
@@ -69,7 +88,9 @@ class Gantry:
         motor_rotations = gear_rotations * self.gear_ratios
         return motor_rotations
 
-    def forward_kinematics(self, motor_rotations):
+    def forward_kinematics(
+        self, motor_rotations: Union[list, np.ndarray]
+    ) -> Union[list, np.ndarray]:
         """
         Calculate forward kinematics
 
@@ -82,7 +103,9 @@ class Gantry:
         self.current_position = self.motor_to_cm(motor_rotations)
         return self.current_position
 
-    def inverse_kinematics(self, target_position):
+    def inverse_kinematics(
+        self, target_position: Union[list, np.ndarray]
+    ) -> Union[list, np.ndarray]:
         """
         Calculate inverse kinematics
 
@@ -96,16 +119,41 @@ class Gantry:
         self.current_position = target_position
         return motor_rotations
 
-    def move_to_position(self, target_position):
+    def move_to_position(self, target_position: Union[list, np.ndarray]) -> None:
         """
         Move the robot to the target position
 
         Args:
-            target_position (array): array of target position for each axis
+            target_position (Union[list, np.ndarray]): array of target position for each axis
+
+        Raises:
+            ValueError: If target_position is not of length 3, contains non-numeric values, or is out of bounds.
 
         Returns:
             None
         """
+
+        if len(target_position) != 3:
+            raise ValueError("target_position must contain exactly 3 elements")
+
+        """ if not all(isinstance(x, (int, float)) for x in target_position):
+            raise ValueError("All elements of target_position must be numeric")  """
+
+        min_x, min_y, min_z, max_x, max_y, max_z = (
+            0,
+            0,
+            0,
+            40,
+            20,
+            4.5,
+        )  # TODO: @kyrylo replace with your actual bounds
+        if target_position[0] < min_x or target_position[0] > max_x:
+            raise ValueError(f"X must be between {min_x} and {max_x}")
+        if target_position[1] < min_y or target_position[1] > max_y:
+            raise ValueError(f"Y must be between {min_y} and {max_y}")
+        if target_position[2] < min_z or target_position[2] > max_z:
+            raise ValueError(f"Z must be between {min_z} and {max_z}")
+
         if self.hub != None:
             # move motors to target position
             motor_rotations = self.inverse_kinematics(target_position)
@@ -122,6 +170,20 @@ class Gantry:
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
                 time.sleep(0.5)
+
+        # Update the current positions:
+        self.current_position = target_position
+
+        # Update the state in the JSON file
+        with open("state.json", "r") as f:
+            state = json.load(f)
+
+        state["x"] = int(self.current_position[0])
+        state["y"] = int(self.current_position[1])
+        state["z"] = int(self.current_position[2])
+
+        with open("state.json", "w") as f:
+            json.dump(state, f, indent=4)
 
 
 # Example usage
