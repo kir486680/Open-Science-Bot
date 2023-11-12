@@ -1,5 +1,6 @@
 try:
     import RPi.GPIO as GPIO
+    import pigpio
 except ImportError:
     # We're not on a Raspberry Pi - use a mock GPIO
     from utils.mock_imports import MockGPIO as GPIO
@@ -33,18 +34,22 @@ class Gripper:
             pwm (int): Pule width modulation for servo
         """
 
+        self.pwm = pigpio.pi()
+        self.pwm.set_mode(servo, pigpio.OUTPUT)
+        self.pwm.set_PWM_frequency(servo, 50)
         self.pin = pin
-        self.pwm = pwm
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.p = GPIO.PWM(self.pin, pwm)  # 50hz frequency
-        self.p.start(2.5)
+        # self.pwm = pwm
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(self.pin, GPIO.OUT)
+        # self.p = GPIO.PWM(self.pin, pwm)  # 50hz frequency
+        # self.p.start(2.5)
         self.is_closed = False  # grip state
 
         # read the state.json file and update the gripper state
         with open("state.json", "r") as f:
             state = json.load(f)
             if state["gripper"] == "closed":
+                self.is_closed = True
                 self.ungrip()
 
     def __del__(self):
@@ -55,7 +60,7 @@ class Gripper:
         interferes with the other modules connected to GPIO...
         """
 
-        self.p.stop()
+        self.pwm.set_servo_pulsewidth(servo, 0)
         GPIO.cleanup()
 
     def grip(self):
@@ -66,8 +71,10 @@ class Gripper:
             raise Exception("Gripper is already closed")
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(4.8)  # grip
+            # self.p.ChangeDutyCycle(2.5)  # grip
+            self.pwm.set_servo_pulsewidth(servo, 500)
             time.sleep(0.5)
+            # print("gyyat")
 
         self.is_closed = True
 
@@ -87,8 +94,10 @@ class Gripper:
             raise Exception("Gripper is already open")
 
         for _ in range(3):
-            self.p.ChangeDutyCycle(2.0)  # ungrip
+            # self.p.ChangeDutyCycle(3.9)  # ungrip
+            self.pwm.set_servo_pulsewidth(servo, 780)
             time.sleep(0.5)
+            print("ungrip")
 
         self.is_closed = False
 

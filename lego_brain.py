@@ -6,7 +6,7 @@ import json
 
 
 class Gantry:
-    def __init__(self, gear_ratios=[1, 1, 1], motor_resolution=360):
+    def __init__(self, gear_ratios=[1, 1, 1,1], motor_resolution=360):
         self.gear_ratios = np.array(
             gear_ratios
         )  # gear ratios for rack and pinion in X, Y, Z
@@ -14,10 +14,10 @@ class Gantry:
             motor_resolution  # degrees of rotation for one full rotation of the motor
         )
         self.cm_per_rotation = np.array(
-            [1, 1, 1]
+            [1, 1, 1,1]
         )  # cm moved per full rotation of the gear in X, Y, Z
         self.current_position = np.array(
-            [0, 0, 0]
+            [0, 0, 0,0]
         )  # current position of the robot in cm
         self.hub = None
         try:
@@ -27,6 +27,7 @@ class Gantry:
                 self.hub.port.A.motor,
                 self.hub.port.B.motor,
                 self.hub.port.D.motor,
+                self.hub.port.E.motor,
             ]  # adjust motor ports as needed
         except:
             print("No hub found, No motors initialized")
@@ -34,7 +35,7 @@ class Gantry:
         # Load the state from the JSON file
         with open("state.json", "r") as f:
             state = json.load(f)
-            self.current_position = np.array([state["x"], state["y"], state["z"]])
+            self.current_position = np.array([state["x"], state["y"], state["z"], state["z1"]])
             # print (f"Current position: {self.current_position}")
             # Move the gantry to the loaded state
             self.move_to_position(self.current_position)
@@ -52,7 +53,7 @@ class Gantry:
         Returns:
             None
         """
-        if len(cm_per_rotation) != 3:
+        if len(cm_per_rotation) != 4:
             raise ValueError("cm_per_rotation must contain exactly 3 elements")
 
         if not all(isinstance(x, (int, float)) for x in cm_per_rotation):
@@ -133,18 +134,21 @@ class Gantry:
             None
         """
 
-        if len(target_position) != 3:
+        if len(target_position) != 4:
+            print(target_position)
             raise ValueError("target_position must contain exactly 3 elements")
 
         """ if not all(isinstance(x, (int, float)) for x in target_position):
             raise ValueError("All elements of target_position must be numeric")  """
 
-        min_x, min_y, min_z, max_x, max_y, max_z = (
+        min_x, min_y, min_z, min_z1,max_x, max_y, max_z,max_z1 = (
             0,
             0,
+            -3,
             0,
             40,
             20,
+            4.5,
             4.5,
         )  # TODO: @kyrylo replace with your actual bounds
         if target_position[0] < min_x or target_position[0] > max_x:
@@ -153,7 +157,9 @@ class Gantry:
             raise ValueError(f"Y must be between {min_y} and {max_y}")
         if target_position[2] < min_z or target_position[2] > max_z:
             raise ValueError(f"Z must be between {min_z} and {max_z}")
-
+        if target_position[3] < min_z1 or target_position[2] > max_z1:
+            raise ValueError(f"Z must be between {min_z1} and {max_z1}")
+        
         if self.hub != None:
             # move motors to target position
             motor_rotations = self.inverse_kinematics(target_position)
@@ -169,7 +175,7 @@ class Gantry:
                     motor.run_for_degrees(abs(rotation_degrees), speed=-60)
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
-                time.sleep(0.5)
+                time.sleep(3)
 
         # Update the current positions:
         self.current_position = target_position
@@ -181,6 +187,7 @@ class Gantry:
         state["x"] = int(self.current_position[0])
         state["y"] = int(self.current_position[1])
         state["z"] = int(self.current_position[2])
+        state["z1"] = int(self.current_position[3])
 
         with open("state.json", "w") as f:
             json.dump(state, f, indent=4)
