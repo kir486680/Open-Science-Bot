@@ -136,7 +136,10 @@ class Gantry:
 
         if len(target_position) != 4:
             print(target_position)
-            raise ValueError("target_position must contain exactly 3 elements")
+            raise ValueError("target_position must contain exactly 4 elements")
+        
+        if target_position[2] > 0:
+            target_position[2]= - target_position[2] #due to the fact that the motors are inverted. Ugly solution, but it works
 
         """ if not all(isinstance(x, (int, float)) for x in target_position):
             raise ValueError("All elements of target_position must be numeric")  """
@@ -144,13 +147,13 @@ class Gantry:
         min_x, min_y, min_z, min_z1,max_x, max_y, max_z,max_z1 = (
             0,
             0,
-            -3,
+            -4.5,
             0,
             40,
             20,
+            0,
             4.5,
-            4.5,
-        )  # TODO: @kyrylo replace with your actual bounds
+        )  
         if target_position[0] < min_x or target_position[0] > max_x:
             raise ValueError(f"X must be between {min_x} and {max_x}")
         if target_position[1] < min_y or target_position[1] > max_y:
@@ -184,10 +187,10 @@ class Gantry:
         with open("state.json", "r") as f:
             state = json.load(f)
 
-        state["x"] = int(self.current_position[0])
-        state["y"] = int(self.current_position[1])
-        state["z"] = int(self.current_position[2])
-        state["z1"] = int(self.current_position[3])
+        state["x"] = float(self.current_position[0])
+        state["y"] = float(self.current_position[1])
+        state["z"] = float(self.current_position[2])
+        state["z1"] = float(self.current_position[3])
 
         with open("state.json", "w") as f:
             json.dump(state, f, indent=4)
