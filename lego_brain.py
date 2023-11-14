@@ -178,7 +178,7 @@ class Gantry:
                     motor.run_for_degrees(abs(rotation_degrees), speed=-60)
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
-                time.sleep(3)
+                time.sleep(0.5)
 
         # Update the current positions:
         self.current_position = target_position

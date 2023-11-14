@@ -1,29 +1,17 @@
-#!/usr/bin/python3
-import RPi.GPIO as GPIO
-import pigpio
+from mindstorms import Motor, Hub
 import time
+import asyncio
 
-servo = 17
+hub = Hub()
+time.sleep(1)
 
-# more info at http://abyz.me.uk/rpi/pigpio/python.html#set_servo_pulsewidth
+motor = hub.port.E.motor
+motor.run_for_degrees(1110)
+#Hello world will be =executed before the motor is done. To prevent this, we can define async functions and await them.
 
-pwm = pigpio.pi()
-pwm.set_mode(servo, pigpio.OUTPUT)
+async def move_motor():
+    await motor.run_for_degrees(1110)
 
-pwm.set_PWM_frequency( servo, 50 )
+asyncio.run(move_motor())
 
-print( "0 deg" )
-pwm.set_servo_pulsewidth( servo, 500 ) 
-time.sleep( 3 )
-
-print( "90 deg" )
-pwm.set_servo_pulsewidth( servo, 1500 ) 
-time.sleep( 3 )
-
-print( "180 deg" )
-pwm.set_servo_pulsewidth( servo, 2500 )
-time.sleep( 3 )
-
-# turning off servo
-pwm.set_PWM_dutycycle( servo, 0 )
-pwm.set_PWM_frequency( servo, 0 )
+print("Hello World")
