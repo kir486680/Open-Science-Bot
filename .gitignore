@@ -11,6 +11,7 @@ robot/
 
 pigpio-master/
 myenv/
+.pytest_cache/
 
 # Distribution / packaging
 .Python
