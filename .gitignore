@@ -9,6 +9,10 @@ __pycache__/
 # Robot
 robot/
 
+pigpio-master/
+myenv/
+.pytest_cache/
+
 # Distribution / packaging
 .Python
 env/
