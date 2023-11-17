@@ -130,7 +130,7 @@ class Gantry:
             target_position (Union[list, np.ndarray]): array of target position for each axis
 
         Raises:
-            ValueError: If target_position is not of length 3, contains non-numeric values, or is out of bounds.
+            ValueError: If target_position is not of length 4, contains non-numeric values, or is out of bounds.
 
         Returns:
             None

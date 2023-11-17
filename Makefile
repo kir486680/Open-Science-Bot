@@ -12,6 +12,9 @@ install:
 test:
 	python -m pytest -vv tests/testGantry.py
 
+physical_test:
+	python tests/physical_test.py
+
 format:
 	black *.py
 

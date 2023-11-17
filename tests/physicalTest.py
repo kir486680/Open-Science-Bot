@@ -11,14 +11,9 @@ import time
 
 def test_right_gripper():
     gantry = Gantry()
-    #Initializing the pump with the defaul GPIO pins
-    
-    #camera = Camera()
-    gantry.set_cm_per_rotation([4, 12.56, 5,5])
-    #gripper = Gripper(17)
-    #gripper.grip()
-    #gripper.ungrip()
-    #first parameter in array is x, second is y, third is z of the gripper with counter electrode, fourth is z of gripper with working electrode
+    gantry.set_cm_per_rotation([4, 12.56, 5, 5])
+    # first parameter in array is x, second is y, third is z of the gripper with counter electrode, fourth is z of gripper with working electrode
+    # first well
     target_position = np.array([0, 0, 0, 0])
     gantry.move_to_position(target_position)
     target_position = np.array([1.5, 0, 2.5, 0])
@@ -27,14 +22,40 @@ def test_right_gripper():
     gantry.move_to_position(target_position)
     target_position = np.array([0, 0, 0, 0])
     gantry.move_to_position(target_position)
-    #gripper.ungrip()
-    # image = camera.get_image()
-    # cv2.imshow("image", image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
 
+    # second well
+    # target_position = np.array([6, 0, 2.5, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([4.5, 0, 3.5, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([4.5, 0, 0, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 0, 0, 0])
+    # gantry.move_to_position(target_position)
+
+    # third well
+    # target_position = np.array([0, 6, 0, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([1.5, 6, 2.5, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 6, 3.5, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 6, 0, 0])
+    # gantry.move_to_position(target_position)
+
+    # fourth well
+    # target_position = np.array([6, 6, 0, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([4.5, 6, 3.5, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([4.5, 6, 0, 0])
+    # gantry.move_to_position(target_position)
+
+    # return to the initial position
+    # target_position = np.array([0, 0, 0, 0])
+    # gantry.move_to_position(target_position)
 
 
 if __name__ == "__main__":
-    for i in range(10):
+    for i in range(1):
         test_right_gripper()
