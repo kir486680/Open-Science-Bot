@@ -18,11 +18,11 @@ physical_test:
 format:
 	black *.py
 
-lint:
-	pylint --disable=R,C main.py
-
 run:
 	#mosquitto & \
 	python main.py
 
-all: install test format
+run_server: install
+	python autolab/server/server.py
+
+all: install test format run_server

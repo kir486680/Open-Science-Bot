@@ -9,3 +9,4 @@ ipython
 pylint
 black
 paho-mqtt
+requests

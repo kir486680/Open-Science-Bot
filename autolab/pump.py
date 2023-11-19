@@ -41,7 +41,7 @@ class Pump:
         """
 
         self.pump.start(25)
-        duration = (amount * 0.775) + -7.8928
+        duration = (amount * 0.775) + -7.8928 #numbers derived from experimentation
         end_time = time.time() + duration  # Calculate the end time
 
         while time.time() < end_time:
