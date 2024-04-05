@@ -6,6 +6,8 @@ except ImportError:
 from time import sleep
 import time
 
+
+import atexit
 # in1 = 23
 # in2 = 24
 # en = 25
@@ -22,7 +24,7 @@ class Pump:
         """
         self.pins = pins
         self.pwm = pwm
-        GPIO.cleanup()
+        
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pins[0], GPIO.OUT)
         GPIO.setup(self.pins[1], GPIO.OUT)
@@ -30,6 +32,7 @@ class Pump:
         GPIO.output(self.pins[0], GPIO.LOW)
         GPIO.output(self.pins[1], GPIO.LOW)
         self.pump = GPIO.PWM(self.pins[2], 1000)
+        atexit.register(self.cleanup)
 
     def pump_liquid(self, amount, duration=None):
         """
@@ -39,14 +42,18 @@ class Pump:
             amount (int):  pump amount of liquid in mL
             duraction (float): amount of seconds it should be pumping. Optional
         """
-
+        print("Thing")
         self.pump.start(25)
-        duration = (amount * 0.775) + -7.8928
+        duration = (amount * 0.587) + 3.849#numbers derived from experimentation
         end_time = time.time() + duration  # Calculate the end time
-
+        print("Time left ", time.time() - end_time)
         while time.time() < end_time:
             GPIO.output(self.pins[0], GPIO.HIGH)
             GPIO.output(self.pins[1], GPIO.LOW)
             self.pump.ChangeDutyCycle(self.pwm)
-            print("Time left ", time.time() - end_time)
+        self.pump.stop(25)
+    @staticmethod
+    def cleanup():
         GPIO.cleanup()
+
+    #

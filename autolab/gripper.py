@@ -6,8 +6,10 @@ except ImportError:
     from utils.mock_imports import MockGPIO as GPIO
 import time
 import json
+from pathlib import Path
 
 
+state_path = Path(__file__).parent / "state/state.json"
 servo = 17
 
 GPIO.setmode(GPIO.BCM)
@@ -46,7 +48,7 @@ class Gripper:
         self.is_closed = False  # grip state
 
         # read the state.json file and update the gripper state
-        with open("state.json", "r") as f:
+        with open(state_path, "r") as f:
             state = json.load(f)
             if state["gripper"] == "closed":
                 self.is_closed = True
@@ -70,20 +72,20 @@ class Gripper:
         if self.is_closed:
             raise Exception("Gripper is already closed")
 
-        for _ in range(3):
+        # for _ in range(3):
             # self.p.ChangeDutyCycle(2.5)  # grip
-            self.pwm.set_servo_pulsewidth(servo, 500)
-            time.sleep(0.5)
+        self.pwm.set_servo_pulsewidth(servo, 2000)
+        time.sleep(0.5)
             # print("gyyat")
 
         self.is_closed = True
 
         # update the state.json file
-        with open("state.json", "r") as f:
+        with open(state_path, "r") as f:
             state = json.load(f)
             state["gripper"] = "closed"
 
-        with open("state.json", "w") as f:
+        with open(state_path, "w") as f:
             json.dump(state, f, indent=4)
 
     def ungrip(self):
@@ -93,18 +95,18 @@ class Gripper:
         if not self.is_closed:
             raise Exception("Gripper is already open")
 
-        for _ in range(3):
+        # for _ in range(3):
             # self.p.ChangeDutyCycle(3.9)  # ungrip
-            self.pwm.set_servo_pulsewidth(servo, 780)
-            time.sleep(0.5)
-            print("ungrip")
+        self.pwm.set_servo_pulsewidth(servo, 500)
+        time.sleep(0.5)
+        print("ungrip")
 
         self.is_closed = False
 
         # update the state.json file
-        with open("state.json", "r") as f:
+        with open(state_path, "r") as f:
             state = json.load(f)
             state["gripper"] = "open"
 
-        with open("state.json", "w") as f:
+        with open(state_path, "w") as f:
             json.dump(state, f, indent=4)

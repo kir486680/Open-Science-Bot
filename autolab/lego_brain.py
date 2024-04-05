@@ -130,7 +130,7 @@ class Gantry:
             target_position (Union[list, np.ndarray]): array of target position for each axis
 
         Raises:
-            ValueError: If target_position is not of length 3, contains non-numeric values, or is out of bounds.
+            ValueError: If target_position is not of length 4, contains non-numeric values, or is out of bounds.
 
         Returns:
             None
@@ -150,10 +150,10 @@ class Gantry:
             0,
             0,
             -4.5,
-            0,
+            -4.5,
             40,
             20,
-            0,
+            4.5,
             4.5,
         )  
         if target_position[0] < min_x or target_position[0] > max_x:
@@ -180,7 +180,7 @@ class Gantry:
                     motor.run_for_degrees(abs(rotation_degrees), speed=-60)
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
-                time.sleep(0.5)
+                time.sleep(0.1)
 
         # Update the current positions:
         self.current_position = target_position
