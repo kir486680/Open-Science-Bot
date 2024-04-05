@@ -9,6 +9,26 @@ import time
 # init the main
 
 
+def test_left_gripper():
+    gantry = Gantry()
+    gantry.set_cm_per_rotation([4, 12.56, 5, 5])
+    target_position = np.array([0, 0, 0, 1.0])
+    gantry.move_to_position(target_position)
+    target_position = np.array([0, 0, 0, 0])
+    gantry.move_to_position(target_position)
+    target_position = np.array([0, 0, 0, 2.0])
+    gantry.move_to_position(target_position)
+    target_position = np.array([0, 0, 0, 0])
+    gantry.move_to_position(target_position)
+    # target_position = np.array([0, 0, 0, 3.0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 0, 0, 0])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 0, 0, 3.5])
+    # gantry.move_to_position(target_position)
+    # target_position = np.array([0, 0, 0, 0])
+    # gantry.move_to_position(target_position)
+
 def test_right_gripper():
     gantry = Gantry()
     gantry.set_cm_per_rotation([4, 12.56, 5, 5])
@@ -16,13 +36,24 @@ def test_right_gripper():
     # first well
     target_position = np.array([0, 0, 0, 0])
     gantry.move_to_position(target_position)
-    target_position = np.array([1.5, 0, 2.5, 0])
+    time.sleep(1)
+    target_position = np.array([0, 0, 1.0, 0])
     gantry.move_to_position(target_position)
-    target_position = np.array([0, 0, 3.5, 0])
-    gantry.move_to_position(target_position)
+    time.sleep(1)
     target_position = np.array([0, 0, 0, 0])
     gantry.move_to_position(target_position)
-
+    time.sleep(1)
+    target_position = np.array([0, 0, 2.0, 0])
+    gantry.move_to_position(target_position)
+    time.sleep(1)
+    target_position = np.array([0, 0, 0, 0])
+    gantry.move_to_position(target_position)
+    time.sleep(1)
+    target_position = np.array([0, 0, 3.5, 0])
+    gantry.move_to_position(target_position)
+    time.sleep(1)
+    target_position = np.array([0, 0, 0, 0])
+    gantry.move_to_position(target_position)
     # second well
     # target_position = np.array([6, 0, 2.5, 0])
     # gantry.move_to_position(target_position)
@@ -57,5 +88,7 @@ def test_right_gripper():
 
 
 if __name__ == "__main__":
-    for i in range(1):
+    repetitions = 1
+    for i in range(repetitions):
         test_right_gripper()
+        # test_left_gripper()

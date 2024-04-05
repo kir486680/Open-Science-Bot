@@ -10,9 +10,9 @@ install:
 	#sudo apt-get install libgl1
 
 test:
-	python -m pytest -vv tests/testGantry.py
+	python -m pytest -vv tests/test_gantry.py
 
-physical_test:
+test_physical:
 	python tests/physical_test.py
 
 format:
@@ -20,7 +20,7 @@ format:
 
 run:
 	#mosquitto & \
-	python main.py
+	python examples/main.py
 
 run_server: install
 	python autolab/server/server.py

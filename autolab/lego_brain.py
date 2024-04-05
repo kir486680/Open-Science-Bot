@@ -150,10 +150,10 @@ class Gantry:
             0,
             0,
             -4.5,
-            0,
+            -4.5,
             40,
             20,
-            0,
+            4.5,
             4.5,
         )  
         if target_position[0] < min_x or target_position[0] > max_x:
@@ -180,7 +180,7 @@ class Gantry:
                     motor.run_for_degrees(abs(rotation_degrees), speed=-60)
                 else:
                     motor.run_for_degrees(abs(rotation_degrees), speed=60)
-                time.sleep(0.5)
+                time.sleep(0.1)
 
         # Update the current positions:
         self.current_position = target_position
