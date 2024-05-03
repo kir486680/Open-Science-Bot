@@ -18,3 +18,4 @@ The following robot has
 - chemical reactor where the counter electrode is preinstalled, and you are able to submerge the metal sample from the gripper, the preinstalled reference, and pump the liquid which are all held by the end-effector of the xyz stage described above. 
 - metal holder simply holds the metal samplse. 
 - potentiostat which is controlled by the software. This is the biggest pain point of the project right now. You need to run the PSPythonSDK/MeasurementExample.py script in palmsdk folder on the windows laptop in order to get the data from the potentiostat. (when you are in the PSPythonSDK folder, just type ```python MeasurementExample.py```). If you want to run the experiment manually, you need to use the PSTrace app on windows. However, also keep in mind that in order to run the potentiostat script you need to use Python 3.8 or below. 
+
