@@ -19,11 +19,11 @@ The following robot has
 - metal holder simply holds the metal samplse. 
 - potentiostat which is controlled by the software. This is the biggest pain point of the project right now. You need to run the PSPythonSDK/MeasurementExample.py script in palmsdk folder on the windows laptop in order to get the data from the potentiostat. (when you are in the PSPythonSDK folder, just type ```python MeasurementExample.py```). If you want to run the experiment manually, you need to use the PSTrace app on windows. However, also keep in mind that in order to run the potentiostat script you need to use Python 3.8 or below. 
 
-Examples 
+# Example
 
 You can run examples/main.py which is basically a preprogrammed sequence to pick up a piece of metal, pump some liquid in the reactor, submerge both electrodes, take them out of the bath, and drop off the electrodes in the location near the metal holder. Keep in mind that the actual MeasurementExample.py needs to be run separately. 
 
-What is next?
+# What is next?
 
 1. You need to be able to somehow call the MeasurementExample.py from the examples/main.py. For that, you might need to setup a server on the raspi using fastapi python package, and also run a server on the windows computer which could execute MeasurementExample.py. I was not able to find a direct way to run the potentiostat from the raspi, but it should be possible... So choose whatever option you think is worth your time.
 2. Do active learning. Familiarize yourself with the active_learning/activeLearning.ipynb, and you can use this template code to set up a real system using the robot. The purpose of that demo is to see how you can autonomously find the concentration of electrolyte A and B to achieve a specific goal(in this example the goal is to run an experiment with a peak of 100mV as signified by ```if np.abs(Y_next - 100) < 1: ```)
@@ -33,7 +33,7 @@ What is next?
 
 So what are the specific steps? 
 
-1. find a specific electrochemical experiment that you want to be running(ask prof. Jae for that). 
+1. find a specific electrochemical experiment that you want to be running(ask prof. Jae for that). Preferrably its some experiment where you are trying to find the ideal peak voltage by changing electrolyte composition.  
 2. you can try to manually do data gathering and see if the active learning algorithm guides you in the correct direction. What I mean by manually is to manually run ```python MeasurementExample.py``` or even just use the PSTrace app during the time.sleep while running the ```examples/main.py```. So the workflow woudl be something like this:
     1. run ```python examples/main.py```
     2. during the ```time.sleep(100)``` you can manually run the ```python MeasurementExample.py```(or PSTrace software) to get the data 
