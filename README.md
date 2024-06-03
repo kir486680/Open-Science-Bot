@@ -14,14 +14,20 @@ Take as an example, electrodeposition which is a method for coating a thin layer
 This research proposes a low-cost and open-source electrochemistry robot. The robot will be a platform for investigating electrochemistry at a price that is suitable for high school science labs but with sufficient precision and extensibility to benefit academic and industrial research.
 
 The following robot has 
-- lego xyz stage, which is controlled by Lego Mindstorm Inventor motors and brain, where two motors drive the x and y axes. The motor controlling the y-axis is on the cart carrying the end effectors. The two end effectors of the xyz stage that the cart carries have a gripper, a holder, and a tube connected to pumps. Both end effectors are controlled by another two Lego Mindstorm Inventor motors, and one of them carries the gripper used to grip metal samples and is actuated by a Hitech servo motor. The other end effector carries the reference electrode holder (you have to preinstall them manually), and the tube is connected to two pumps. One pump can pump electrolytes from the beaker (currently connected to the two beakers), and the other pump is used to drain the bath after each experiment.
+- lego xyz stage, which is controlled by Lego Mindstorm Inventor motors and brain, where two motors drive the x and y axes. The motor controlling the y-axis is on the cart carrying the end effectors. The two end effectors of the xyz stage that the cart carries have a gripper, a holder, and a tube connected to a pump. Both end effectors are controlled by another two Lego Mindstorm Inventor motors, and one of them carries the gripper used to grip metal samples and is actuated by a Hitech servo motor. The other end effector carries the reference electrode holder (you have to preinstall them manually), and a tube connected to a pump that pumps electrolytes from the beaker (currently connected to the two beakers).
+- another pump connected to the chemical reactor used to drain the reactor after each experiment.
 - chemical reactor where the counter electrode is preinstalled, and you are able to submerge the metal sample from the gripper, the preinstalled reference, and pump the liquid which are all held by the end-effector of the xyz stage described above. 
 - a metal holder which simply holds the metal samples. 
 - potentiostat which is controlled by the software. This is the biggest pain point of the project right now. You need to run the PSPythonSDK/MeasurementExample.py script in palmsdk folder on the windows laptop in order to get the data from the potentiostat. (when you are in the PSPythonSDK folder, just type ```python MeasurementExample.py```). If you want to run the experiment manually, you need to use the PSTrace app on windows. However, also keep in mind that in order to run the potentiostat script you need to use Python 3.8 or below. 
 
 # Example
 
-You can run examples/main.py which is basically a preprogrammed sequence to pick up a piece of metal, pump some liquid in the reactor, submerge both electrodes, take them out of the bath, and drop off the electrodes in the location near the metal holder. Keep in mind that the actual MeasurementExample.py needs to be run separately. 
+You can run examples/main.py, which is a preprogrammed sequence that does the following: (Keep in mind that the actual MeasurementExample.py needs to be run separately)
+1. Pick up a piece of metal by moving the xyz stage over the metal holder, lower the gripper end effector over the piece of metal, gripping it, and then raise the end effector.
+2. The xyz stage will be moved above the reactor, the end effector carrying the pump will be lowered, and the pump will pump some liquid into the reactor.
+3. After enough liquid has been pumped into the reactor, the second end effector with the piece of metal will be lowered into the reactor. The experiment will begin.
+4. After the experiment, both end effectors will be raised. The second pump will drain the liquid from the reactor.
+5. The xyz stage will be moved to a nearby spot to drop off the metal sample. The xyz stage will then be moved back to the (0,0,0) location.
 
 # What is next?
 
