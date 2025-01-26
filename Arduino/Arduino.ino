@@ -111,7 +111,7 @@ void pumpB(JsonObject parameters) {
   digitalWrite(in4, LOW);
 }
 
-// Modify your executeCommand function
+// Find the right device for the command
 void executeCommand(const char* device, const char* action, JsonObject parameters) {
   for (size_t i = 0; i < sizeof(deviceHandlers) / sizeof(DeviceHandler); i++) {
     if (strcmp(device, deviceHandlers[i].device) == 0) {
@@ -122,7 +122,7 @@ void executeCommand(const char* device, const char* action, JsonObject parameter
   Serial.println("Unknown device");
 }
 
-// Update executeAction to include parameters
+// Execute Action on device
 void executeAction(const char* action, ActionHandler* actions, size_t actionCount, JsonObject parameters) {
   for (size_t i = 0; i < actionCount; ++i) {
     if (strcmp(action, actions[i].action) == 0) {
@@ -174,7 +174,6 @@ void loop() {
       
       // Handle the command based on device
       executeCommand(device, action, parameters);
-      // Add more devices here as needed
     }
     
     // Send a response

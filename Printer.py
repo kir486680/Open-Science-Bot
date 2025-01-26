@@ -3,12 +3,12 @@ import time
 import logging
 
 class Printer:
-    def __init__(self, port, baudrate):
+    def __init__(self, port : str, baudrate : int):
         self.serial = serial.Serial(port, baudrate)
         time.sleep(2)
 
     
-    def send_command(self, command):
+    def send_command(self, command : str):
         logging.info(f"Sending command: {command}")
         self.serial.write((command + '\n').encode())
         self.wait_for_ok()
@@ -25,7 +25,7 @@ class Printer:
         logging.info("Waiting for completion")
         self.send_command("M400")  # Wait for all movements to complete
 
-    def move_to(self, x=None, y=None, z=None, speed=4000):
+    def move_to(self, x : float = None, y : float = None, z : float = None, speed : int = 4000):
         """
         Moves the printer to the specified coordinates. If x or y is not provided,
         the current position is maintained.
@@ -49,7 +49,7 @@ class Printer:
         self.wait_for_completion()  # Wait for the command to complete
         logging.info("Completed move")
 
-    def home(self, axes=""):
+    def home(self, axes : str = ""):
         """
         Homes the specified axes. If no axes are specified, all axes are homed.
         :param axes: A string containing the axes to home, e.g., "X", "Y", "Z".

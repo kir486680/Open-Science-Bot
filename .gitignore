@@ -5,3 +5,5 @@ __pycache__/
 
 #include test.py file 
 test.py
+
+.DS_Store

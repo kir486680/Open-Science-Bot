@@ -1,10 +1,10 @@
 {
     "printer": {
-        "port": "/dev/ttyUSB0",
+        "port": "/dev/tty.usbmodem5CF0515B37301",
         "baudrate": 115200
     },
     "arduino": {
-        "port": "/dev/ttyACM0",
+        "port": "/dev/tty.usbmodem112301",
         "baudrate": 9600
     }
 }
