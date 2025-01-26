@@ -1,6 +1,7 @@
 env/
 interface/
 PSPythonSDK/
+__pycache__/
 
 #include test.py file 
 test.py
