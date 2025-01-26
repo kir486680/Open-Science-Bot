@@ -4,60 +4,38 @@ from Task import Task
 from TaskManager import TaskManager
 from HelperTask import sleep
 import logging
+from Device import DeviceFactory, DeviceType
 
 logging.basicConfig(level=logging.INFO)
 
-printer = Printer(port='/dev/tty.usbmodem5CF0515B37301', baudrate=115200)
-arduino = ArduinoDevice(port='/dev/tty.usbmodem112201', baudrate=9600)
-
-task_manager = TaskManager()
-
-#task_manager.add_task(Task(printer.home, args=()))
-
-# Example tasks
-task_manager.add_task(Task(printer.move_to, args=(None, None, 120, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(90.9, None, None, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(None, 85, None, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(None, None, 47, 4000)))
-
-# #gripper
-task_manager.add_task(Task(sleep, args=(1,)))
-task_manager.add_task(Task(arduino.grip, args=(1,)))
-task_manager.add_task(Task(sleep, args=(1,)))
-task_manager.add_task(Task(arduino.grip, args=(2,)))
-task_manager.add_task(Task(sleep, args=(1,)))
-
-task_manager.add_task(Task(printer.move_to, args=(None, None, 120, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(91.6, None, None, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(None, 157.2, None, 4000)))
-task_manager.add_task(Task(printer.move_to, args=(None, None, 46.8, 4000)))
-
-#pumpA
-task_manager.add_task(Task(sleep, args=(1,)))
-task_manager.add_task(Task(arduino.pumpA, args=(25,)))
-task_manager.add_task(Task(sleep, args=(3,)))
-
-# # back to the start
-# task_manager.add_task(Task(printer.move_to, args=(None, None, 120, 4000)))
-# task_manager.add_task(Task(printer.move_to, args=(90.9, None, None, 4000)))
-# task_manager.add_task(Task(printer.move_to, args=(None, 85, None, 4000)))
-# task_manager.add_task(Task(printer.move_to, args=(None, None, 47, 4000)))
-
-# # gripper
-task_manager.add_task(Task(sleep, args=(1,)))
-task_manager.add_task(Task(arduino.ungrip, args=(1,)))
-task_manager.add_task(Task(sleep, args=(1,)))
-task_manager.add_task(Task(arduino.ungrip, args=(2,)))
-task_manager.add_task(Task(sleep, args=(1,)))
+from pathlib import Path
+from typing import Dict
+from RobotSequences import RobotSequences
 
 
-# # #retract the head
-task_manager.add_task(Task(printer.move_to, args=(None, None, 120, 4000)))
 
-# task_manager.add_task(Task(sleep, args=(1,)))
-# task_manager.add_task(Task(arduino.pumpB, args=(20,)))
-# task_manager.add_task(Task(sleep, args=(1,)))
+def main():
+    DeviceFactory.register_device(DeviceType.PRINTER, Printer)
+    DeviceFactory.register_device(DeviceType.ARDUINO, ArduinoDevice)
 
 
-logging.info("Running tasks")
-task_manager.run()
+    DeviceFactory.load_config('devices.json')
+
+    printer = DeviceFactory.create_device(DeviceType.PRINTER)
+    arduino = DeviceFactory.create_device(DeviceType.ARDUINO)
+
+    task_manager = TaskManager()
+
+    robot_sequences = RobotSequences(task_manager, printer, arduino)
+
+    robot_sequences.move_to_start()
+    robot_sequences.grip_electrodes()
+    robot_sequences.move_to_bath()
+    robot_sequences.pump_A()
+    robot_sequences.ungrip_both_electrodes()
+    robot_sequences.retract_head()
+
+
+
+if __name__ == "__main__":
+    main()

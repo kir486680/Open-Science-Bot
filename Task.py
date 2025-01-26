@@ -1,15 +1,17 @@
 import logging
+from dataclasses import dataclass
+from typing import Callable, Any, Tuple
 
+@dataclass
 class Task:
-    def __init__(self, function, args=None):
-        self.function = function
-        self.args = args or []
+    function: Callable
+    args: Tuple[Any, ...] = ()
+    description: str = ""
     
-    def execute(self):
+    def execute(self) -> Any:
         try:
-            logging.info(f"Args: {self.args}")
+            logging.info(f"Executing: {self.description or self.function.__name__}")
             return self.function(*self.args)
         except Exception as e:
-            logging.error(f"Error executing task {self.function.__name__}: {e}")
-            
-
+            logging.error(f"Error executing {self.function.__name__}: {e}")
+            raise

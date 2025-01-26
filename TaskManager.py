@@ -1,19 +1,27 @@
 import logging
+from typing import List, Optional
+from contextlib import contextmanager
+from Task import Task
+
 
 class TaskManager:
     def __init__(self):
-        self.tasks = []
+        self.tasks: List[Task] = []
+        self.current_sequence: Optional[List[Task]] = None
     
-    def add_task(self, task):
-        self.tasks.append(task)
+    @contextmanager
+    def sequence(self, name: str):
+        """Create a named sequence of tasks"""
+        self.current_sequence = []
+        yield
+        if self.current_sequence:
+            logging.info(f"Adding sequence: {name} with {len(self.current_sequence)} tasks")
+            self.tasks.extend(self.current_sequence)
+        self.current_sequence = None
     
-    def run(self):
-        logging.info(f"Running {len(self.tasks)} tasks")
-        for task in self.tasks:
-            # Ensure task.function is a callable
-            if callable(task.function):
-                logging.info(f"Executing task: {task.function.__name__}")
-                task.execute()
-            else:
-                logging.error("Task function is not callable")
-                # Handle result or errors if necessary
+    def add_task(self, task: Task) -> None:
+        if self.current_sequence is not None:
+            self.current_sequence.append(task)
+        else:
+            self.tasks.append(task)
+    
