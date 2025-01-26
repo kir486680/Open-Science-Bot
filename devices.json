@@ -1,0 +1,10 @@
+{
+    "printer": {
+        "port": "/dev/ttyUSB0",
+        "baudrate": 115200
+    },
+    "arduino": {
+        "port": "/dev/ttyACM0",
+        "baudrate": 9600
+    }
+}
