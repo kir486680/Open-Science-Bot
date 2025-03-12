@@ -1,0 +1,14 @@
+
+from "elec/src/S150060GS75000.ato" import S150060GS75000
+
+module L150060gs75000:
+    """Parameters"""
+
+    """Interfaces"""
+
+    """Components"""
+    ic = new S150060GS75000
+
+    """Values"""
+
+    """Connections"""

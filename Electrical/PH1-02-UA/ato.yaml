@@ -1,0 +1,4 @@
+ato-version: ^0.2.0
+builds:
+  default:
+    entry: ph1_02_ua.ato:Ph102Ua

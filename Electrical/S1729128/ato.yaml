@@ -1,0 +1,4 @@
+ato-version: ^0.2.0
+builds:
+  default:
+    entry: 1729128.ato:1729128

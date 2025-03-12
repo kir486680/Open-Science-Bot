@@ -1,0 +1,26 @@
+component PH106UA:
+    datasheet = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/22522227e000bb8d8f26a3580c1bb98b.pdf"
+    description = "CONN HEADER VERT 6POS 2.54MM"
+    footprint = "HDRV6W64P0X254_1X6_1524X250X952P"
+    manufacturer = "Adam Tech"
+    mpn = "PH1-06-UA"
+
+    """Signals"""
+    signal S1
+    S1 ~ pin "1"
+
+    signal S2
+    S2 ~ pin "2"
+
+    signal S3
+    S3 ~ pin "3"
+
+    signal S4
+    S4 ~ pin "4"
+
+    signal S5
+    S5 ~ pin "5"
+
+    signal S6
+    S6 ~ pin "6"
+

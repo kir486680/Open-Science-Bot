@@ -1,0 +1,56 @@
+component S87606408LF:
+    datasheet = "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/87606.pdf"
+    description = "16 Position Receptacle Connector 0.100" (2.54mm) Through Hole Tin"
+    footprint = "87606408LF"
+    manufacturer = "Amphenol Communications Solutions"
+    mpn = "87606-408LF"
+
+    """Signals"""
+    signal S1
+    S1 ~ pin "1"
+
+    signal S2
+    S2 ~ pin "2"
+
+    signal S3
+    S3 ~ pin "3"
+
+    signal S4
+    S4 ~ pin "4"
+
+    signal S5
+    S5 ~ pin "5"
+
+    signal S6
+    S6 ~ pin "6"
+
+    signal S7
+    S7 ~ pin "7"
+
+    signal S8
+    S8 ~ pin "8"
+
+    signal S9
+    S9 ~ pin "9"
+
+    signal S10
+    S10 ~ pin "10"
+
+    signal S11
+    S11 ~ pin "11"
+
+    signal S12
+    S12 ~ pin "12"
+
+    signal S13
+    S13 ~ pin "13"
+
+    signal S14
+    S14 ~ pin "14"
+
+    signal S15
+    S15 ~ pin "15"
+
+    signal S16
+    S16 ~ pin "16"
+

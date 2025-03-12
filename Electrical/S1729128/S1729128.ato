@@ -1,0 +1,6 @@
+
+from "elec/src/S1729128.ato" import S17291281
+
+module S1729128:
+
+    ic = new S17291281

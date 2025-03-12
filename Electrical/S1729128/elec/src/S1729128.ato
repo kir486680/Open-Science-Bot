@@ -1,0 +1,14 @@
+component S17291281:
+    datasheet = "http://www.phoenixcontact.net/product/1729128"
+    description = "PCB terminal block, nominal current: 13.5 A, rated voltage (III/2): 400 V, nominal cross section: 1.5 mm?, Number of potentials: 2, Number of rows: 1, Number of positions per row: 2, product range: MKDSN 1,5, pitch: 5.08 mm, connection method: Screw connection with tension sleeve, mounting: Wave soldering, conductor/PCB connection direction: 0 ?, color: green, Pin layout: Linear pinning, Solder pin [P]: 3.5 mm, type of packaging: packed in cardboard"
+    footprint = "1729128"
+    manufacturer = "Phoenix Contact"
+    mpn = "1729128"
+
+    """Signals"""
+    signal S1
+    S1 ~ pin "1"
+
+    signal S2
+    S2 ~ pin "2"
+

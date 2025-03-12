@@ -1,0 +1,6 @@
+[module]
+name = "ph1_08_ua"
+entry = "ph1_08_ua.ato:Ph108Ua"
+tags = []
+description = "Conn Unshrouded Header HDR 8 POS 2.54mm Solder ST Thru-Hole"
+datasheet = "https://app.adam-tech.com/products/download/data_sheet/201605/ph1-xx-ua-data-sheet.pdf"

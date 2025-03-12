@@ -1,0 +1,6 @@
+[module]
+name = "ph1_10_ua"
+entry = "ph1_10_ua.ato:Ph110Ua"
+tags = []
+description = "Conn Unshrouded Header HDR 10 POS 2.54mm Solder RA Side Entry Thru-Hole Bag"
+datasheet = "https://app.adam-tech.com/products/download/data_sheet/201605/ph1-xx-ua-data-sheet.pdf"
