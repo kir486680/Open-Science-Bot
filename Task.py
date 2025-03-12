@@ -9,6 +9,9 @@ class Task:
     description: str = ""
     
     def execute(self) -> Any:
+        """
+        Executes the task
+        """
         try:
             logging.info(f"Executing: {self.description or self.function.__name__}")
             return self.function(*self.args)

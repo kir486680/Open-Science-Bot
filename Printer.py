@@ -9,11 +9,17 @@ class Printer:
 
     
     def send_command(self, command : str):
+        """
+        Sends a command to the printer and waits for the response
+        """
         logging.info(f"Sending command: {command}")
         self.serial.write((command + '\n').encode())
         self.wait_for_ok()
 
     def wait_for_ok(self):
+        """
+        Waits for the printer to respond with "ok"
+        """
         while True:
             response = self.serial.readline().decode().strip()
             if response == "ok":
@@ -22,6 +28,9 @@ class Printer:
             elif response:
                 logging.info(f"Printer response: {response}")
     def wait_for_completion(self):
+        """
+        Waits for the printer to complete all movements
+        """
         logging.info("Waiting for completion")
         self.send_command("M400")  # Wait for all movements to complete
 

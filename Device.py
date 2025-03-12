@@ -20,10 +20,12 @@ class DeviceFactory:
     
     @classmethod
     def register_device(cls, device_type: DeviceType, device_class: Type) -> None:
+        """Register a device class for a given device type."""
         cls._devices[device_type] = device_class
     
     @classmethod
     def create_device(cls, device_type: DeviceType, **kwargs) -> Any:
+        """Create a device instance of a given type with optional keyword arguments."""
         if device_type not in cls._devices:
             raise ValueError(f"Unknown device type: {device_type}")
             

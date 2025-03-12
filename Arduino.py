@@ -4,11 +4,14 @@ import logging
 import time
 
 class ArduinoDevice:
-    def __init__(self, port, baudrate):
+    def __init__(self, port : str, baudrate : int):
         self.serial = serial.Serial(port, baudrate)
         time.sleep(2)
     
-    def send_command(self, command_dict):
+    def send_command(self, command_dict : dict):
+        """
+        Sends a command to the Arduino and waits for the response
+        """
         command_str = json.dumps(command_dict)
         logging.info(f"Sending command: {command_str}")
         
@@ -35,33 +38,50 @@ class ArduinoDevice:
             logging.error(f"Unexpected error: {e}")
             raise
     
-    def dispense(self, volume):
+    def dispense(self, volume : float):
+        """
+        Dispenses a given volume of liquid
+        """
         command = {"device": "pump", "action": "dispense", "parameters": {"volume": volume}}
         return self.send_command(command)
     
-    def move_motor(self, position):
+    def move_motor(self, position : float):
+        """
+        Moves the motor to a given position
+        """
         command = {"device": "motor", "action": "move", "parameters": {"position": position}}
         return self.send_command(command)
     
-    def grip(self, gripper_number):
+    def grip(self, gripper_number : int):
+        """
+        Grips the gripper
+        """
         command = {"device": "gripper", "action": "grip", "parameters": {"gripper_number": gripper_number}}
         response = self.send_command(command)
         if response.get("status") != "ok":
             raise Exception("Failed to execute grip command")
         return response
     
-    def ungrip(self, gripper_number):
+    def ungrip(self, gripper_number : int):
+        """
+        Ungrips the gripper
+        """
         command = {"device": "gripper", "action": "ungrip", "parameters": {"gripper_number": gripper_number}}
         response = self.send_command(command)
         if response.get("status") != "ok":
             raise Exception("Failed to execute ungrip command")
         return response
     
-    def pumpA(self, seconds, direction="forward"):
+    def pumpA(self, seconds : float, direction : str = "forward"):
+        """
+        Pumps liquid in the A direction
+        """
         command = {"device": "pumpA", "action": "run", "parameters": {"duration": seconds, "direction": direction}}
         return self.send_command(command)
 
-    def pumpB(self, seconds, direction="forward"):
+    def pumpB(self, seconds : float, direction : str = "forward"):
+        """
+        Pumps liquid in the B direction
+        """
         command = {"device": "pumpB", "action": "run", "parameters": {"duration": seconds, "direction": direction}}
         return self.send_command(command)
-    # Add other high-level methods as needed

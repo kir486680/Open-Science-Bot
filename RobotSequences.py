@@ -4,6 +4,8 @@ from HelperTask import sleep
 from Printer import Printer
 from Arduino import Arduino
 
+    
+
 class RobotSequences:
     """Class to organize and manage robot operation sequences"""
     def __init__(self, task_manager: TaskManager, printer : Printer, arduino : Arduino):
@@ -12,6 +14,9 @@ class RobotSequences:
         self.arduino = arduino
 
     def move_to_start(self):
+        """
+        Moves the robot to the start position
+        """
         with self.task_manager.execute_sequence("move_to_start"):
             self.task_manager.add_task(Task(
                 self.printer.move_to,
@@ -36,6 +41,9 @@ class RobotSequences:
 
 
     def grip_electrodes(self):
+        """
+        Grips the electrodes
+        """
         with self.task_manager.execute_sequence("grip_both_electrodes"):
             self.task_manager.add_task(Task(sleep, args=(1,), description="Pre-grip delay"))
             self.task_manager.add_task(Task(
@@ -52,6 +60,9 @@ class RobotSequences:
             self.task_manager.add_task(Task(sleep, args=(1,), description="Post-grip delay"))
     
     def ungrip_both_electrodes(self):
+        """
+        Ungrips the electrodes
+        """
         with self.task_manager.execute_sequence("ungrip_both_electrodes"):
             self.task_manager.add_task(Task(sleep, args=(1,)))
             self.task_manager.add_task(Task(self.arduino.ungrip, args=(1,)))
@@ -60,6 +71,9 @@ class RobotSequences:
             self.task_manager.add_task(Task(sleep, args=(1,)))
 
     def move_to_bath(self):
+        """
+        Moves the robot to the bath position
+        """
         with self.task_manager.execute_sequence("move_to_bath"):
             self.task_manager.add_task(Task(
                 self.printer.move_to,
@@ -83,12 +97,18 @@ class RobotSequences:
             ))
 
     def pump_A(self):
+        """
+        Pumps liquid in the A direction
+        """
         with self.task_manager.execute_sequence("pump_A"):
             self.task_manager.add_task(Task(sleep, args=(1,)))
             self.task_manager.add_task(Task(self.arduino.pumpA, args=(25,)))
             self.task_manager.add_task(Task(sleep, args=(3,)))
 
     def retract_head(self):
+        """
+        Retracts the head
+        """
         with self.task_manager.execute_sequence("retract_head"):
             self.task_manager.add_task(Task(
                 self.printer.move_to,
