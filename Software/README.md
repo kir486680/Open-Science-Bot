@@ -1,7 +1,7 @@
 # Self-Driving Lab Software
 
 
-![System Diagram Placeholder](images/SoftwareArchitecture.png)
+![System Diagram Placeholder](../images/SoftwareArchitecture.png)
 *Figure 1 – Overview of the software stack.*
 
 ## General Description
