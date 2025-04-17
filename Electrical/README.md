@@ -30,7 +30,7 @@ All point‑to‑point wiring is routed through a **pass‑through breakout PCB*
 *Quantities marked “—” depend on enclosure layout.*
 
 ### PCB Design Note
-The breakout PCB was created with **[Atopile](https://docs.atopile.io/atopile/quickstart)**—a platform that lets you design electronics **with code**. Using Atopile’s declarative approach keeps the hardware definition under version control and makes modifications or panelization as easy as editing a text file.
+The breakout PCB was created with **[Atopile](https://docs.atopile.io/atopile/quickstart)**—a platform that lets you design electronics **with code**. use `sdl_breakout.ato` as the entry to the Atopile project. If you would like to directly submit the PCB files to the manufacturing, use the zip file from `/elec/layout/default/production` 
 
 ---
 
