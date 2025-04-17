@@ -7,6 +7,7 @@ from pathlib import Path
 class DeviceType(Enum):
     PRINTER = "printer"
     ARDUINO = "arduino"
+    POTENTIOSTAT = "potentiostat"
 
 class DeviceFactory:
     _devices: Dict[DeviceType, Type] = {}

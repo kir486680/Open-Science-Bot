@@ -6,5 +6,8 @@
     "arduino": {
         "port": "/dev/tty.usbmodem112301",
         "baudrate": 9600
+    },
+    "potentiostat": {
+        "port": "/dev/tty.usbmodem2055349133301"
     }
 }

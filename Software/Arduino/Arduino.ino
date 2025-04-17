@@ -5,13 +5,13 @@ Servo myservo1;
 Servo myservo2;  
 const int ledPin = 13;
 // Motor A connections
-int enA = 9;
-int in1 = 7;
-int in2 = 8;
+int enA = 8;
+int in1 = 10;
+int in2 = 9;
 // Motor B connections
-int enB = 4;
-int in3 = 6;
-int in4 = 5;
+int enB = 5;
+int in3 = 7;
+int in4 = 6;
 
 // Define a struct to map actions to functions
 struct ActionHandler {
@@ -152,8 +152,8 @@ void setup() {
   digitalWrite(in4, LOW);
 
 
-  myservo1.attach(2);  // Assigns data pin to your servo object, must be digital port
-  myservo2.attach(11);
+  myservo1.attach(4);  // Assigns data pin to your servo object, must be digital port
+  myservo2.attach(3);
   
   myservo1.write(90);  // ungripped position for servo1
   myservo2.write(0);

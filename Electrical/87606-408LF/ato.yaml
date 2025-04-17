@@ -1,4 +1,0 @@
-ato-version: ^0.2.0
-builds:
-  default:
-    entry: 87606_408lf.ato:87606408lf
