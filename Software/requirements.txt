@@ -1,0 +1,6 @@
+pyserial==3.5
+numpy==2.1.3
+pandas==2.2.3
+seaborn==0.13.2
+toml==0.10.2
+requests==2.31.0

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "potentiostat"
+authors = [{name = "Matter Lab", email = "matterlab@uot.com"}]
+requires-python = ">=3.9"
+
+dependencies = [
+    "requests",
+    'pyserial',
+    'numpy',
+    'pandas',
+    'seaborn',
+    'toml',
+]
+
