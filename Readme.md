@@ -35,11 +35,19 @@ The system features:
 ## Sample Data
 
 Below is an example of the data collected by the system:
-<!-- 
-```
-Sample measurement data will be displayed here
-Showing voltage/current curves, measurement parameters, etc.
-``` -->
 
 
+### Acetic Acid Solutions
+![5% Acetic Acid](images/5Vinegar.png)
+*Figure 5: LPR measurement in full 5% Acetic Acid (Rp = 276 Ω)*
+
+![1% Acetic Acid](images/1Vinegar.png)
+*Figure 6: LPR measurement in dilute 1% Acetic Acid (Rp = 4,978 Ω)*
+
+### NaCl Solutions
+![3% NaCl](images/3salt.png)
+*Figure 3: LPR measurement in 3% NaCl solution (Rp = 206 Ω)*
+
+![1% NaCl](images/1salt.png)
+*Figure 4: LPR measurement in 1% NaCl solution (Rp = 329 Ω)*
 
