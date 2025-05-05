@@ -32,9 +32,9 @@ The system features:
 - [Electronics Documentation](Electrical/README.md)
 - [Mechanical Documentation](Mechanical/README.md)
 
-## Sample Data
+## Data
 
-Below is an example of the data collected by the system:
+Data collected by the system:
 
 
 ### Acetic Acid Solutions
