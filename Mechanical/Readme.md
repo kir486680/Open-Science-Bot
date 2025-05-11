@@ -11,7 +11,7 @@
 - **Plate Guides/Positioners**: After the design of the [Electrochemical Cell Setup](#electrochemical-cell-setup) matured, the repeatability of the setup became an issue, as slight nudges on the setup from the gripper will prevent the setup from functioning correctly due to the precise commanded movements. To prevent this, the guides were designed so that the starting position of the [Electrochemical Cell Setup](#electrochemical-cell-setup) is always known and any small misalignment that occurs during experiments can be self-corrected.
 
 ### Assembly Instructions
-1. Print 2 sets of corner guide clips, 4 center guide clips, 2 2-notched guides, and 2 1-notched guides.
+1. Print 2 sets of corner guide clips (`Guide Corner Clips.SLDPRT`, `Guide Corner Clips Mirrored.SLDPRT`, and, `Guide Corner Clips Mirrored Tight Corner.SLDPRT`), 4 center guide clips (`Guide Center Clips.SLDPRT`), 2 2-notched guides (`Guide Separators.SLDPRT`), 6 short sticks (`Guide Sticks.SLDPRT`), and 2 1-notched guides (`Guide Separators Side.SLDPRT`). 
 2. Place the corner guide clips (the pieces where the T-shaped slots are perpendicular to each other) at the corners of the print bed and the centre guide clips on the front and back edges of the plate.
 3. Place the short guide sticks between the clips on the front and back edges of the plate.
 4. Connect the clips on the front and back edges of the plate using the long guide sticks. Use the sticks with two notches as the middle guide sticks and the ones with one notch as the side guide sticks near the gantry bracket.
@@ -34,14 +34,14 @@
 *Figure 2 – Gripper assembly.*
 
 ### Assembly instructions
-1. Print 2 pinion and rack gears and the 2 plates.
+1. Print 2 pinion (`Spur Gear.SLDPRT`) and rack gears (`Rack Gear.SLDPRT` and `Rack Gear Mirrored.SLDPRT`) and the 2 plates (`Full Housing Part 1.SLDPRT` and `Full Housing Part 2.SLDPRT`).
 2. Install the pinion gears onto the motor shaft.
 ![Gripper Step 1](images/Gripper_Step_1.png) 
 *Figure 3 – Pinion gear assembly.*
-3. Place the rack gears and the motors onto the backplate.
+3. Place the rack gears and the motors onto the backplate (`Full Housing Part 1.SLDPRT`).
 ![Gripper Step 2](images/Gripper_Step_2.png) 
 *Figure 4 – Rack gear assembly.*
-4. Snap the front plate over the assembly.
+4. Snap the front plate over the assembly(`Full Housing Part 2.SLDPRT`).
 5. Screw the entire gripper assembly onto the gantry head.
 6. Connect the solution pipes to the funnel entrance.
 
@@ -63,10 +63,11 @@
 *Figure 6 – Bath.*
 
 ### Assembly Instruction
-1. Print the electrode deposites and bath (depends on how many experiements is needed to perform at the same time).
-1. Route the electric tape from the electrode holder supports to the side extrudes on the bath.
-2. Route the electric tape on the electrode holder from the electrode connector or the working electrode to side of the holder.
-3. Place the electrode deposites and bath on the print bed as the following
+1. Print the electrode holders (designs in `Mechanical/Gripper Redesign/Lid`) neccessary for the electrode being tested.
+2. Print the electrode deposites (`Electrode Holder.SLDPRT`), bath (`Bath V2.SLDPRT`) and bath mount (`Bath Mount.SLDPRT`). Number depends on how many experiements is needed to perform at the same time.
+3. Route the electric tape from the electrode holder supports to the side extrudes on the bath.
+4. Route the electric tape on the electrode holder from the electrode connector or the working electrode to side of the holder.
+5. Place the electrode deposites and bath (on the bath mount) on the print bed as the following.
 
 ![Guide Layout](images/Full_Setup.JPG)
 *Figure 7 – Fully setup print bed.*
