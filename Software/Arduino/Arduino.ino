@@ -5,12 +5,12 @@ Servo myservo1;
 Servo myservo2;  
 const int ledPin = 13;
 // Motor A connections
-int enA = 8;
-int in1 = 10;
-int in2 = 9;
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
 // Motor B connections
-int enB = 5;
-int in3 = 7;
+int enB = 4;
+int in3 = 5;
 int in4 = 6;
 
 // Define a struct to map actions to functions

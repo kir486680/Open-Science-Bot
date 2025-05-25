@@ -4,8 +4,18 @@
         "baudrate": 115200
     },
     "arduino": {
-        "port": "/dev/tty.usbmodem112301",
-        "baudrate": 9600
+        "port": "/dev/tty.usbmodem112401",
+        "baudrate": 9600,
+        "pump_calibration": {
+            "pumpA_forward": {
+                "slope": 0.6696,
+                "intercept": 0.8702
+            },
+            "pumpB_forward": {
+                "slope": 0.5827,
+                "intercept": 0.4732
+            }
+        }
     },
     "potentiostat": {
         "port": "/dev/tty.usbmodem2055349133301"
