@@ -1,4 +1,4 @@
-# Automated Electrochemical Testing Robot
+# Autonomous Electrochemical Robot
 
 ![Full Robot Setup](images/FullRobotPic.JPG)
 *Figure 1: Complete setup of the electrochemical testing robot*
@@ -34,8 +34,14 @@ The system features:
 
 ## Data
 
-Data collected by the system:
+Examples of data collected by the system:
 
+
+### Bayesian Optimization
+![Bayesian Optimization](images/Bayesian.png)
+*Figure 7: Bayesian optimization progress showing error convergence for target potential of -0.1V*
+
+The optimization process iteratively adjusts vinegar concentration while measuring the resulting potential difference, converging on the optimal conditions with minimal experimental trials.
 
 ### Acetic Acid Solutions
 ![5% Acetic Acid](images/5Vinegar.png)
@@ -50,4 +56,3 @@ Data collected by the system:
 
 ![1% NaCl](images/1salt.png)
 *Figure 4: LPR measurement in 1% NaCl solution (Rp = 329 Ω)*
-
