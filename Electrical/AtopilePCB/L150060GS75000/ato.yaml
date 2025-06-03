@@ -1,0 +1,4 @@
+ato-version: ^0.2.0
+builds:
+  default:
+    entry: 150060gs75000.ato:150060gs75000

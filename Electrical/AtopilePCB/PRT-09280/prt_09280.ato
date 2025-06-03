@@ -1,0 +1,14 @@
+
+from "elec/src/PRT09280.ato" import PRT09280
+
+module Prt09280:
+    """Parameters"""
+
+    """Interfaces"""
+
+    """Components"""
+    ic = new PRT09280
+
+    """Values"""
+
+    """Connections"""

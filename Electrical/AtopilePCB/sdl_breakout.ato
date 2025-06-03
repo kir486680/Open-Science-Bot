@@ -1,0 +1,311 @@
+import Power from "generics/interfaces.ato"
+import Resistor from "generics/resistors.ato"
+import Capacitor from "generics/capacitors.ato"
+from "S1729128/S1729128.ato" import S1729128
+from "PH1-02-UA/ph1_02_ua.ato" import Ph102Ua
+from "PH1-03-UA/ph1_03_ua.ato" import Ph103Ua
+from "PH1-06-UA/ph1_06_ua.ato" import Ph106Ua
+from "PH1-08-UA/ph1_08_ua.ato" import Ph108Ua
+from "PH1-10-UA/ph1_10_ua.ato" import Ph110Ua
+from "C25YXJ100M5X11/C25yxj100m5x11.ato" import C25yxj100m5x11
+from "CL31B106KOHNNWE/cl31b106kohnnwe.ato" import Cl31b106kohnnwe
+from "L150060GS75000/L150060gs75000.ato" import L150060gs75000
+from "C0603C104M5RACTU/c0603c104m5ractu.ato" import C0603c104m5ractu
+from "UHE1E471MPD6/uhe1e471mpd6.ato" import Uhe1e471mpd6
+
+# Define our motor control component
+module MotorControlConnector:
+    # Define interface signals
+    signal in1
+    signal in2
+    signal in3
+    signal in4
+    signal ena
+    signal enb
+    
+    # Add power interface
+    power_5v = new Power  # For 5V and GND
+    power_12v = new Power
+    # Create the physical connectors (now using 8-pin headers)
+    motor_input = new Ph106Ua
+    motor_output = new Ph108Ua
+    motor_high_current = new S1729128
+
+    # Map the signals to the physical connector pins for input
+    motor_input.ic.S1 ~ in1
+    motor_input.ic.S2 ~ in2
+    motor_input.ic.S3 ~ in3
+    motor_input.ic.S4 ~ in4
+    motor_input.ic.S5 ~ ena
+    motor_input.ic.S6 ~ enb
+
+    # Map the signals to the physical connector pins for output
+    motor_output.ic.S1 ~ in1  # Using in1 directly as it's connected to out1
+    motor_output.ic.S2 ~ in2  # Using in2 directly as it's connected to out2
+    motor_output.ic.S3 ~ in3  # Using in3 directly as it's connected to out3
+    motor_output.ic.S4 ~ in4  # Using in4 directly as it's connected to out4
+    motor_output.ic.S5 ~ ena
+    motor_output.ic.S6 ~ enb
+    motor_output.ic.S7 ~ power_5v.vcc  # 5V
+    motor_output.ic.S8 ~ power_5v.gnd  # GND
+
+    motor_high_current.ic.S1 ~ power_12v.vcc  # 12V
+    motor_high_current.ic.S2 ~ power_12v.gnd  # GND
+
+module ServoControl:
+    # Define interface signals
+    signal control  # Digital control signal
+    power = new Power  # For 5V and GND
+
+    # Create the physical connector (3-pin header)
+    servo_header = new Ph103Ua
+
+    #CAP CER 0.1UF 50V X7R 0603 ByPass
+    bypass_capacitor = new C0603c104m5ractu
+    bypass_capacitor.ic.S1 ~ power.vcc
+    bypass_capacitor.ic.S2 ~ power.gnd
+
+    #CAP ALUM 470UF 20% 25V RADIAL TH
+    bulk_capacitor = new Uhe1e471mpd6
+    bulk_capacitor.ic.P ~ power.vcc
+    bulk_capacitor.ic.S_ ~ power.gnd
+
+    # Map the signals to the physical connector pins
+    servo_header.ic.S1 ~ power.vcc  # 5V
+    servo_header.ic.S2 ~ control    # Control signal
+    servo_header.ic.S3 ~ power.gnd  # GND
+
+module Potentiostat:
+    # Define interface signals: counter, reference, working
+    signal counter
+    signal working
+    signal reference
+
+    # Create the physical connector (3-pin header)
+    potentiostat_header_input = new Ph103Ua
+    potentiostat_header_output = new Ph103Ua
+
+    # Map the signals to the physical connector pins
+    potentiostat_header_input.ic.S1 ~ counter
+    potentiostat_header_input.ic.S2 ~ working
+    potentiostat_header_input.ic.S3 ~ reference
+
+    potentiostat_header_output.ic.S1 ~ counter
+    potentiostat_header_output.ic.S2 ~ working
+    potentiostat_header_output.ic.S3 ~ reference
+    
+
+module ArduinoDigitalInputs:
+    # Define interface signals for all digital inputs
+    signal digital1
+    signal digital2
+    signal digital3
+    signal digital4
+    signal digital5
+    signal digital6
+
+    # Create the physical connector (6-pin header)
+    input_header = new Ph106Ua
+
+    # Map the signals to the physical connector pins
+    input_header.ic.S1 ~ digital1
+    input_header.ic.S2 ~ digital2
+    input_header.ic.S3 ~ digital3
+    input_header.ic.S4 ~ digital4
+    input_header.ic.S5 ~ digital5
+    input_header.ic.S6 ~ digital6
+
+module SdlBreakout:
+    
+    # Power rails
+    power12v = new Power
+    power5v = new Power
+    #connect both grounds together
+    power12v.gnd ~ power5v.gnd
+
+    # Power filtering capacitors
+    # 12V CAP ALUM 100UF 20% 25V RADIAL TH
+    cap_12v = new C25yxj100m5x11
+    cap_12v.ic.P ~ power12v.vcc
+    cap_12v.ic.S_ ~ power12v.gnd
+
+    # 5V CAP CER 10UF 16V X7R 1206
+    cap_5v = new Cl31b106kohnnwe
+    cap_5v.ic.S1 ~ power5v.vcc
+    cap_5v.ic.S2 ~ power5v.gnd
+
+    # Power connectors
+    power_in_12V = new S1729128
+    power_in_12V.ic.S1 ~ power12v.vcc
+    power_in_12V.ic.S2 ~ power12v.gnd
+
+    power_in_arduino = new Ph102Ua
+    power_in_arduino.ic.S1 ~ power5v.vcc
+    power_in_arduino.ic.S2 ~ power5v.gnd
+
+    # Power LED
+    power_led_5v = new L150060gs75000
+    resistor_5v = new Resistor 
+    resistor_5v.value = 390ohm +/- 5%
+    resistor_5v.package = "0603"
+    resistor_5v.1 ~ power5v.vcc
+    resistor_5v.2 ~ power_led_5v.ic.A
+    power_led_5v.ic.K ~ power5v.gnd
+
+    # 12V Power indicator LED
+    power_led_12v = new L150060gs75000
+    resistor_12v = new Resistor 
+    resistor_12v.value = 1.8kohm +/- 5%
+    resistor_12v.package = "0603"
+    resistor_12v.1 ~ power12v.vcc
+    resistor_12v.2 ~ power_led_12v.ic.A
+    power_led_12v.ic.K ~ power12v.gnd
+
+    # Define connectors with their own designator prefixes
+    motor1 = new MotorControlConnector
+    motor2 = new MotorControlConnector
+
+    #connect 5V to the motor controllers
+    power5v ~ motor1.power_5v
+    power5v ~ motor2.power_5v
+
+    #connect 12V to the motor controllers
+    power12v ~ motor1.power_12v
+    power12v ~ motor2.power_12v
+
+    # Servo controls
+    servo1 = new ServoControl
+    servo2 = new ServoControl
+
+    # Arduino digital inputs
+    arduino_digital_inputs = new ArduinoDigitalInputs
+
+    servo1.power ~ power5v
+    servo2.power ~ power5v
+
+    arduino_digital_inputs.digital1 ~ servo1.control  # First digital input goes to servo1
+    arduino_digital_inputs.digital2 ~ servo2.control
+
+    # Potentiostat
+    potentiostat = new Potentiostat
+
+    # # LED
+    debug_led_1 = new L150060gs75000
+    resistor_1 = new Resistor 
+    resistor_1.value = 390ohm +/- 5%
+    resistor_1.package = "0603"
+    resistor_1.1 ~ arduino_digital_inputs.digital5
+    resistor_1.2 ~ debug_led_1.ic.A
+    debug_led_1.ic.K ~ power5v.gnd
+
+    debug_led_2 = new L150060gs75000
+    resistor_2 = new Resistor 
+    resistor_2.value = 390ohm +/- 5%
+    resistor_2.package = "0603"
+    resistor_2.1 ~ arduino_digital_inputs.digital6
+    resistor_2.2 ~ debug_led_2.ic.A
+    debug_led_2.ic.K ~ power5v.gnd
+
+
+
+
+
+    
+
+
+    # # Arduino connection (female headers)
+    # arduino = new ArduinoConnector
+    
+    # # Motor controllers
+    # motor1 = new MotorControlConnector
+    # motor2 = new MotorControlConnector
+    
+    # # Servo controls
+    # servo1 = new ServoConnector
+    # servo2 = new ServoConnector
+    
+    # # Power filtering capacitors
+    # cap_12v = new Capacitor
+    # cap_12v.footprint = "CP_Elec_6.3x7.7"
+    # cap_12v.mpn = "UCD1C101MCL1GS"  # 100uF 16V Electrolytic
+    # cap_12v.value = 100uF +/- 20%
+    # cap_12v.voltage = 16V
+    
+    # cap_5v = new Capacitor
+    # cap_5v.footprint = "C_0805_2012Metric"
+    # cap_5v.mpn = "GRM21BR61C106KE15L"  # 10uF 16V Ceramic
+    # cap_5v.value = 10uF +/- 10%
+    # cap_5v.voltage = 16V
+    
+    # # Connect Arduino control signals to motor controls
+    # arduino.d2 ~ motor1.in1
+    # arduino.d3 ~ motor1.in2
+    # arduino.d4 ~ motor1.in3
+    # arduino.d5 ~ motor1.in4
+    # arduino.d6 ~ motor1.ena
+    # arduino.d7 ~ motor1.enb
+    
+    # arduino.d8 ~ motor2.in1
+    # arduino.d9 ~ motor2.in2
+    # arduino.d10 ~ motor2.in3
+    # arduino.d11 ~ motor2.in4
+    # arduino.d12 ~ motor2.ena
+    # arduino.d13 ~ motor2.enb
+    
+    # # Power connections
+    # power12v ~ cap_12v.power
+    # power5v ~ cap_5v.power
+    
+    # # Servo power connections using power interfaces
+    # power5v ~ servo1.power
+    # power5v ~ servo2.power
+    # arduino.power.gnd ~ servo1.power.gnd
+    # arduino.power.gnd ~ servo2.power.gnd
+    
+    # # Motor power connections
+    # arduino.power.gnd ~ motor1.power.gnd
+    # arduino.power.gnd ~ motor2.power.gnd
+
+
+
+
+# # Define our servo connector
+# component ServoConnector:
+#     pin sig
+#     pin vcc
+#     pin gnd
+    
+#     power = new Power  # Add power interface
+#     power.vcc ~ vcc
+#     power.gnd ~ gnd
+    
+#     footprint = "CONN_1x3_P2.54MM"
+#     designator_prefix = "J"
+#     #mpn = "PinHeader_1x3_P2.54mm"
+
+# component ArduinoConnector:
+#     # Digital pins (female headers)
+#     pin d2
+#     pin d3
+#     pin d4
+#     pin d5
+#     pin d6
+#     pin d7
+#     pin d8
+#     pin d9
+#     pin d10
+#     pin d11
+#     pin d12
+#     pin d13
+    
+#     # Power pins
+#     pin vcc
+#     pin gnd
+    
+#     power = new Power  # Add power interface
+#     power.vcc ~ vcc
+#     power.gnd ~ gnd
+    
+#     footprint = "CONN_2x7_P2.54MM_FEMALE"
+#     designator_prefix = "J"
+#     #mpn = "PinHeader_2x7_P2.54mm_Female"

@@ -1,0 +1,6 @@
+[module]
+name = "cl31b106kohnnwe"
+entry = "cl31b106kohnnwe.ato:Cl31b106kohnnwe"
+tags = []
+description = "Cap Ceramic 10uF 16V X7R 10% Pad SMD 1206 125C T/R"
+datasheet = "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL31B106KOHNNWE.pdf"

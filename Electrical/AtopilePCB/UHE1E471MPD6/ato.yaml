@@ -1,0 +1,4 @@
+ato-version: ^0.2.0
+builds:
+  default:
+    entry: uhe1e471mpd6.ato:Uhe1e471mpd6

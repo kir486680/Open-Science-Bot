@@ -1,0 +1,14 @@
+component S25YXJ100M5X11:
+    datasheet = "http://www.rubycon.co.jp/en/catalog/e_pdfs/aluminum/e_yxj.pdf"
+    description = "Rubycon 100uF 25 V dc Aluminium Electrolytic Capacitor, YXJ Series 5000h 5 Dia. x 11mm"
+    footprint = "CAPPRD200W50D550H1250"
+    manufacturer = "Rubycon"
+    mpn = "25YXJ100M5X11"
+
+    """Signals"""
+    signal P
+    P ~ pin "1"
+
+    signal S_
+    S_ ~ pin "2"
+

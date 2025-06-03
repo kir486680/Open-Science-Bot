@@ -1,0 +1,6 @@
+[module]
+name = "prt_09280"
+entry = "prt_09280.ato:Prt09280"
+tags = []
+description = "Arduino Stackable Header - 6 Pin"
+datasheet = "https://cdn.sparkfun.com/datasheets/Prototyping/SP-140520-XX-001.pdf"

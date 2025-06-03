@@ -1,0 +1,6 @@
+[module]
+name = "uhe1e471mpd6"
+entry = "uhe1e471mpd6.ato:Uhe1e471mpd6"
+tags = []
+description = "Nichicon 470F 25V dc Aluminium Electrolytic Capacitor, Through Hole 10 (Dia.) x 16mm +105C 10mm 5mm"
+datasheet = "https://www.nichicon.co.jp/english/series_items/catalog_pdf/e-uhe.pdf"

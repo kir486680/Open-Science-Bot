@@ -1,0 +1,6 @@
+[module]
+name = "S1729128"
+entry = "S1729128.ato:S1729128"
+tags = []
+description = "PCB terminal block, nominal current: 13.5 A, rated voltage (III/2): 400 V, nominal cross section: 1.5 mm?, Number of potentials: 2, Number of rows: 1, Number of positions per row: 2, product range: MKDSN 1,5, pitch: 5.08 mm, connection method: Screw connection with tension sleeve, mounting: Wave soldering, conductor/PCB connection direction: 0 ?, color: green, Pin layout: Linear pinning, Solder pin [P]: 3.5 mm, type of packaging: packed in cardboard"
+datasheet = "http://www.phoenixcontact.net/product/1729128"

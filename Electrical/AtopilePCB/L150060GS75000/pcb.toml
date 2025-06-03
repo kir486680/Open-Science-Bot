@@ -1,0 +1,6 @@
+[module]
+name = "L150060gs75000"
+entry = "L150060gs75000.ato:L150060gs75000"
+tags = []
+description = "Wurth Elektronik WL-SMCW 520 nm Green LED, 1608 (0603) Clear SMD package"
+datasheet = "https://componentsearchengine.com/Datasheets/2/150060GS75000.pdf"

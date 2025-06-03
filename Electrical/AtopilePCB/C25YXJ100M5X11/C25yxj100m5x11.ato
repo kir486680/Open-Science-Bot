@@ -1,0 +1,14 @@
+
+from "elec/src/S25YXJ100M5X11.ato" import S25YXJ100M5X11
+
+module C25yxj100m5x11:
+    """Parameters"""
+
+    """Interfaces"""
+
+    """Components"""
+    ic = new S25YXJ100M5X11
+
+    """Values"""
+
+    """Connections"""

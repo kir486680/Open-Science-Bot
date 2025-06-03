@@ -1,0 +1,14 @@
+
+from "elec/src/PH110UA.ato" import PH110UA
+
+module Ph110Ua:
+    """Parameters"""
+
+    """Interfaces"""
+
+    """Components"""
+    ic = new PH110UA
+
+    """Values"""
+
+    """Connections"""

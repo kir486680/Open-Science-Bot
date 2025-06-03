@@ -1,0 +1,14 @@
+component PH102UA:
+    datasheet = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/22522227e000bb8d8f26a3580c1bb98b.pdf"
+    description = "CONN HEADER VERT 2POS 2.54MM"
+    footprint = "HDRV2W64P0X254_1X2_508X250X850P"
+    manufacturer = "Adam Tech"
+    mpn = "PH1-02-UA"
+
+    """Signals"""
+    signal S1
+    S1 ~ pin "1"
+
+    signal S2
+    S2 ~ pin "2"
+

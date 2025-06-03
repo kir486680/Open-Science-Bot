@@ -1,0 +1,38 @@
+component PH110UA:
+    datasheet = "https://app.adam-tech.com/products/download/data_sheet/201605/ph1-xx-ua-data-sheet.pdf"
+    description = "Conn Unshrouded Header HDR 10 POS 2.54mm Solder RA Side Entry Thru-Hole Bag"
+    footprint = "HDRV10W64P0X254_1X10_2540X249X886P"
+    manufacturer = "Adam Tech"
+    mpn = "PH1-10-UA"
+
+    """Signals"""
+    signal S1
+    S1 ~ pin "1"
+
+    signal S2
+    S2 ~ pin "2"
+
+    signal S3
+    S3 ~ pin "3"
+
+    signal S4
+    S4 ~ pin "4"
+
+    signal S5
+    S5 ~ pin "5"
+
+    signal S6
+    S6 ~ pin "6"
+
+    signal S7
+    S7 ~ pin "7"
+
+    signal S8
+    S8 ~ pin "8"
+
+    signal S9
+    S9 ~ pin "9"
+
+    signal S10
+    S10 ~ pin "10"
+

@@ -1,7 +1,7 @@
-# Autonomous Electrochemical Robot
+# Autonomous Open-Science Robot
 
-![Full Robot Setup](images/FullRobotPic.JPG)
-*Figure 1: Complete setup of the electrochemical testing robot*
+![Full Robot Setup](images/FullRobotPic.PNG)
+*Figure 1: Complete setup of the robot*
 
 ![Robot Diagram](images/RobotDiagram.png)
 *Figure 2: Schematic diagram of the robot's key components*

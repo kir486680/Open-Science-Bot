@@ -1,0 +1,13 @@
+[module]
+name = "sdl_breakout"
+entry = "sdl_breakout.ato:SdlBreakout"
+tags = []
+
+[docs]
+datasheet = "docs/sdl_breakout.typ"
+
+[registries]
+diodelib = { url = "git@github.com:diodeinc/demolib.git", rev = "main" }
+
+[dependencies]
+generics = { path = "generics", registry = "diodelib" }
