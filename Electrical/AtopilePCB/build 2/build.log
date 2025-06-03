@@ -1,0 +1,269 @@
+[12:01:55] INFO     Using project                                   common.py:72
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB                                        
+           INFO     Building default                                 build.py:38
+[12:01:57] WARNING  Implicit Declaration Future Deprecation Warning errors.py:81
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:150:4                 
+                        Field 'package' not declared for                        
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:SdlBreako             
+                    ut::resistor_5v. Declaring implicitly for now,              
+                    but in the future this may become an error...               
+           WARNING  Implicit Declaration Future Deprecation Warning errors.py:81
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:159:4                 
+                        Field 'package' not declared for                        
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:SdlBreako             
+                    ut::resistor_12v. Declaring implicitly for now,             
+                    but in the future this may become an error...               
+           WARNING  Implicit Declaration Future Deprecation Warning errors.py:81
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:196:4                 
+                        Field 'package' not declared for                        
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:SdlBreako             
+                    ut::resistor_1. Declaring implicitly for now,               
+                    but in the future this may become an error...               
+           WARNING  Implicit Declaration Future Deprecation Warning errors.py:81
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:204:4                 
+                        Field 'package' not declared for                        
+                    /Users/kirillkalashnikov/Desktop/programming/pr             
+                    inter/Electrical/PCB/sdl_breakout.ato:SdlBreako             
+                    ut::resistor_2. Declaring implicitly for now,               
+                    but in the future this may become an error...               
+           INFO     No variables in assertions to solve        assertions.py:252
+           INFO     Writing outputs to                               build.py:78
+                    /Users/kirillkalashnikov/Desktop/programming/pri            
+                    nter/Electrical/PCB/build                                   
+           INFO     Building 'bom' for 'default' config             build.py:100
+[12:01:58] INFO     Fetched component C23151 for               components.py:259
+                    /Users/kirillkalashnikov/Desktop/programmi                  
+                    ng/printer/Electrical/PCB/sdl_breakout.ato                  
+                    :SdlBreakout::resistor_5v                                   
+[12:01:59] INFO     Fetched component C4177 for                components.py:259
+                    /Users/kirillkalashnikov/Desktop/programmi                  
+                    ng/printer/Electrical/PCB/sdl_breakout.ato                  
+                    :SdlBreakout::resistor_12v                                  
+           INFO     Fetched component C23151 for               components.py:259
+                    /Users/kirillkalashnikov/Desktop/programmi                  
+                    ng/printer/Electrical/PCB/sdl_breakout.ato                  
+                    :SdlBreakout::resistor_1                                    
+           INFO     Fetched component C23151 for               components.py:259
+                    /Users/kirillkalashnikov/Desktop/programmi                  
+                    ng/printer/Electrical/PCB/sdl_breakout.ato                  
+                    :SdlBreakout::resistor_2                                    
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Comment       ┃ Designator    ┃ Footprint     ┃ LCSC           ┃ Price       ┃
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ Rubycon 100uF │ U1            │ CAPPRD200W50… │ 25YXJ100M5X11  │ 0.00        │
+│ 25 V dc       │               │               │                │             │
+│ Aluminium     │               │               │                │             │
+│ Electrolytic  │               │               │                │             │
+│ Capacitor,    │               │               │                │             │
+│ YXJ Series    │               │               │                │             │
+│ 5000h 5 Dia.  │               │               │                │             │
+│ x 11mm        │               │               │                │             │
+│ Cap Ceramic   │ U2            │ CAPC3216X180N │ CL31B106KOHNN… │ 0.00        │
+│ 10uF 16V X7R  │               │               │                │             │
+│ 10% Pad SMD   │               │               │                │             │
+│ 1206 125C T/R │               │               │                │             │
+│ PCB terminal  │ U3,U9,U12     │ 1729128       │ 1729128        │ 0.00        │
+│ block,        │               │               │                │             │
+│ nominal       │               │               │                │             │
+│ current: 13.5 │               │               │                │             │
+│ A, rated      │               │               │                │             │
+│ voltage       │               │               │                │             │
+│ (III/2): 400  │               │               │                │             │
+│ V, nominal    │               │               │                │             │
+│ cross         │               │               │                │             │
+│ section: 1.5  │               │               │                │             │
+│ mm?, Number   │               │               │                │             │
+│ of            │               │               │                │             │
+│ potentials:   │               │               │                │             │
+│ 2, Number of  │               │               │                │             │
+│ rows: 1,      │               │               │                │             │
+│ Number of     │               │               │                │             │
+│ positions per │               │               │                │             │
+│ row: 2,       │               │               │                │             │
+│ product       │               │               │                │             │
+│ range: MKDSN  │               │               │                │             │
+│ 1,5, pitch:   │               │               │                │             │
+│ 5.08 mm,      │               │               │                │             │
+│ connection    │               │               │                │             │
+│ method: Screw │               │               │                │             │
+│ connection    │               │               │                │             │
+│ with tension  │               │               │                │             │
+│ sleeve,       │               │               │                │             │
+│ mounting:     │               │               │                │             │
+│ Wave          │               │               │                │             │
+│ soldering,    │               │               │                │             │
+│ conductor/PCB │               │               │                │             │
+│ connection    │               │               │                │             │
+│ direction: 0  │               │               │                │             │
+│ ?, color:     │               │               │                │             │
+│ green, Pin    │               │               │                │             │
+│ layout:       │               │               │                │             │
+│ Linear        │               │               │                │             │
+│ pinning,      │               │               │                │             │
+│ Solder pin    │               │               │                │             │
+│ [P]: 3.5 mm,  │               │               │                │             │
+│ type of       │               │               │                │             │
+│ packaging:    │               │               │                │             │
+│ packed in     │               │               │                │             │
+│ cardboard     │               │               │                │             │
+│ CONN HEADER   │ U4            │ HDRV2W64P0X2… │ PH1-02-UA      │ 0.00        │
+│ VERT 2POS     │               │               │                │             │
+│ 2.54MM        │               │               │                │             │
+│ Wurth         │ U5,U6,U22,U23 │ LEDC1608X80N  │ 150060GS75000  │ 0.00        │
+│ Elektronik    │               │               │                │             │
+│ WL-SMCW 520   │               │               │                │             │
+│ nm Green LED, │               │               │                │             │
+│ 1608 (0603)   │               │               │                │             │
+│ Clear SMD     │               │               │                │             │
+│ package       │               │               │                │             │
+│ 100mW Thick   │ R1,R3,R4      │ 0603          │ C23151         │ 0.000771429 │
+│ Film          │               │               │                │             │
+│ Resistors 75V │               │               │                │             │
+│ ±100ppm/℃ ±1% │               │               │                │             │
+│ 390Ω 0603     │               │               │                │             │
+│ Chip Resistor │               │               │                │             │
+│ - Surface     │               │               │                │             │
+│ Mount ROHS    │               │               │                │             │
+│ 100mW Thick   │ R2            │ 0603          │ C4177          │ 0.000742857 │
+│ Film          │               │               │                │             │
+│ Resistors 75V │               │               │                │             │
+│ ±100ppm/℃ ±1% │               │               │                │             │
+│ 1.8kΩ 0603    │               │               │                │             │
+│ Chip Resistor │               │               │                │             │
+│ - Surface     │               │               │                │             │
+│ Mount ROHS    │               │               │                │             │
+│ CONN HEADER   │ U7,U10,U19    │ HDRV6W64P0X2… │ PH1-06-UA      │ 0.00        │
+│ VERT 6POS     │               │               │                │             │
+│ 2.54MM        │               │               │                │             │
+│ Conn          │ U8,U11        │ HDRV8W64P0X2… │ PH1-08-UA      │ 0.00        │
+│ Unshrouded    │               │               │                │             │
+│ Header HDR 8  │               │               │                │             │
+│ POS 2.54mm    │               │               │                │             │
+│ Solder ST     │               │               │                │             │
+│ Thru-Hole     │               │               │                │             │
+│ CONN HEADER   │ U13,U16,U20,… │ HDRV3W64P0X2… │ PH1-03-UA      │ 0.00        │
+│ VERT 3POS     │               │               │                │             │
+│ 2.54MM        │               │               │                │             │
+│ SMD Comm X7R, │ U14,U17       │ C0603         │ C0603C104M5RA… │ 0.00        │
+│ Ceramic, 0.1  │               │               │                │             │
+│ uF, 20%, 50   │               │               │                │             │
+│ VDC, 125 VDC, │               │               │                │             │
+│ 125C, -55C,   │               │               │                │             │
+│ X7R, SMD,     │               │               │                │             │
+│ MLCC,         │               │               │                │             │
+│ Temperature   │               │               │                │             │
+│ Stable, Class │               │               │                │             │
+│ II, 2.5 % , 5 │               │               │                │             │
+│ GOhms, 7.3    │               │               │                │             │
+│ mg, 0603,     │               │               │                │             │
+│ 1.6mm, 0.8mm, │               │               │                │             │
+│ 0.8mm, 0.7mm, │               │               │                │             │
+│ 0.35mm, 4000, │               │               │                │             │
+│ 78  Weeks, 80 │               │               │                │             │
+│ Nichicon 470F │ U15,U18       │ CAPPRD500W60… │ UHE1E471MPD6   │ 0.00        │
+│ 25V dc        │               │               │                │             │
+│ Aluminium     │               │               │                │             │
+│ Electrolytic  │               │               │                │             │
+│ Capacitor,    │               │               │                │             │
+│ Through Hole  │               │               │                │             │
+│ 10 (Dia.) x   │               │               │                │             │
+│ 16mm +105C    │               │               │                │             │
+│ 10mm 5mm      │               │               │                │             │
+└───────────────┴───────────────┴───────────────┴────────────────┴─────────────┘
+           INFO     Building 'designator-map' for 'default' config  build.py:100
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Designator ↓ ┃ Name                                       ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│           R1 │ resistor_5v                                │
+│           R2 │ resistor_12v                               │
+│           R3 │ resistor_1                                 │
+│           R4 │ resistor_2                                 │
+│           U1 │ cap_12v.ic                                 │
+│           U2 │ cap_5v.ic                                  │
+│           U3 │ power_in_12V.ic                            │
+│           U4 │ power_in_arduino.ic                        │
+│           U5 │ power_led_5v.ic                            │
+│           U6 │ power_led_12v.ic                           │
+│           U7 │ motor1.motor_input.ic                      │
+│           U8 │ motor1.motor_output.ic                     │
+│           U9 │ motor1.motor_high_current.ic               │
+│          U10 │ motor2.motor_input.ic                      │
+│          U11 │ motor2.motor_output.ic                     │
+│          U12 │ motor2.motor_high_current.ic               │
+│          U13 │ servo1.servo_header.ic                     │
+│          U14 │ servo1.bypass_capacitor.ic                 │
+│          U15 │ servo1.bulk_capacitor.ic                   │
+│          U16 │ servo2.servo_header.ic                     │
+│          U17 │ servo2.bypass_capacitor.ic                 │
+│          U18 │ servo2.bulk_capacitor.ic                   │
+│          U19 │ arduino_digital_inputs.input_header.ic     │
+│          U20 │ potentiostat.potentiostat_header_input.ic  │
+│          U21 │ potentiostat.potentiostat_header_output.ic │
+│          U22 │ debug_led_1.ic                             │
+│          U23 │ debug_led_2.ic                             │
+└──────────────┴────────────────────────────────────────────┘
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Name ↓                                     ┃ Designator ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ arduino_digital_inputs.input_header.ic     │ U19        │
+│ cap_12v.ic                                 │ U1         │
+│ cap_5v.ic                                  │ U2         │
+│ debug_led_1.ic                             │ U22        │
+│ debug_led_2.ic                             │ U23        │
+│ motor1.motor_high_current.ic               │ U9         │
+│ motor1.motor_input.ic                      │ U7         │
+│ motor1.motor_output.ic                     │ U8         │
+│ motor2.motor_high_current.ic               │ U12        │
+│ motor2.motor_input.ic                      │ U10        │
+│ motor2.motor_output.ic                     │ U11        │
+│ potentiostat.potentiostat_header_input.ic  │ U20        │
+│ potentiostat.potentiostat_header_output.ic │ U21        │
+│ power_in_12V.ic                            │ U3         │
+│ power_in_arduino.ic                        │ U4         │
+│ power_led_12v.ic                           │ U6         │
+│ power_led_5v.ic                            │ U5         │
+│ resistor_1                                 │ R3         │
+│ resistor_12v                               │ R2         │
+│ resistor_2                                 │ R4         │
+│ resistor_5v                                │ R1         │
+│ servo1.bulk_capacitor.ic                   │ U15        │
+│ servo1.bypass_capacitor.ic                 │ U14        │
+│ servo1.servo_header.ic                     │ U13        │
+│ servo2.bulk_capacitor.ic                   │ U18        │
+│ servo2.bypass_capacitor.ic                 │ U17        │
+│ servo2.servo_header.ic                     │ U16        │
+└────────────────────────────────────────────┴────────────┘
+           INFO     Building 'copy-3dmodels' for 'default' config   build.py:100
+           INFO     Building 'layout-module-map' for 'default'      build.py:100
+                    config                                                      
+           INFO     Building 'assertions-report' for 'default'      build.py:100
+                    config                                                      
+           Assertions           
+┏━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━┓
+┃ Status ┃ Assertion ┃ Numeric ┃
+┡━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━┩
+└────────┴───────────┴─────────┘
+           INFO     Building 'variable-report' for 'default' config build.py:100
+       Variable Values       
+┏━━━━━━━━━┳━━━━━━━┳━━━━━━━━━┓
+┃ Address ┃ Value ┃ Comment ┃
+┡━━━━━━━━━╇━━━━━━━╇━━━━━━━━━┩
+└─────────┴───────┴─────────┘
+           INFO     Building 'netlist' for 'default' config         build.py:100
+           INFO     Building 'clone-footprints' for 'default'       build.py:100
+                    config                                                      
+           INFO     Building 'copy-footprints' for 'default' config build.py:100
+           INFO     Successfully built 'bom, designator-map,        build.py:105
+                    copy-3dmodels, layout-module-map,                           
+                    assertions-report, variable-report, netlist,                
+                    clone-footprints, copy-footprints' for                      
+                    'default' config                                            
+           INFO     Build complete!                                  build.py:59
