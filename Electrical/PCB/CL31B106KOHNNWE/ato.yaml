@@ -1,4 +1,0 @@
-ato-version: ^0.2.0
-builds:
-  default:
-    entry: cl31b106kohnnwe.ato:Cl31b106kohnnwe

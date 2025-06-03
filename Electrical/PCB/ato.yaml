@@ -1,4 +1,0 @@
-ato-version: ^0.2.0
-builds:
-  default:
-    entry: sdl_breakout.ato:SdlBreakout

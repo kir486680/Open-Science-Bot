@@ -1,4 +1,0 @@
-ato-version: ^0.2.0
-builds:
-  default:
-    entry: c0603c104m5ractu.ato:C0603c104m5ractu
