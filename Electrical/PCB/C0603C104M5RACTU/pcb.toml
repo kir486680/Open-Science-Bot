@@ -1,6 +1,0 @@
-[module]
-name = "c0603c104m5ractu"
-entry = "c0603c104m5ractu.ato:C0603c104m5ractu"
-tags = []
-description = "SMD Comm X7R, Ceramic, 0.1 uF, 20%, 50 VDC, 125 VDC, 125C, -55C, X7R, SMD, MLCC, Temperature Stable, Class II, 2.5 % , 5 GOhms, 7.3 mg, 0603, 1.6mm, 0.8mm, 0.8mm, 0.7mm, 0.35mm, 4000, 78  Weeks, 80"
-datasheet = "https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf"

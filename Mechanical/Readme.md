@@ -72,6 +72,3 @@
 ![Guide Layout](images/Full_Setup.JPG)
 *Figure 7 – Fully setup print bed.*
 
----
-
-*Last updated: 2025‑04‑20*

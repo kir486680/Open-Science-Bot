@@ -25,9 +25,18 @@ def main():
 
     # Example sequence
     try:
-        robot_sequences.move_to_start()
+        robot_sequences.home_robot()
+        
+        # Wait for user to set up bath and electrodes
+        robot_sequences.wait_for_user_confirmation()
+        
+        #robot_sequences.move_to_start()
         robot_sequences.grip_electrodes()
         robot_sequences.move_to_bath()
+        
+        # Pump operations with calibrated volumes
+        robot_sequences.pump_A_forward(10.0)  # Pump 10mL with pump A
+        robot_sequences.pump_B_forward(15.0)  # Pump 15mL with pump B
         
         # Run an electrochemical test
         sample_name = "test_sample"

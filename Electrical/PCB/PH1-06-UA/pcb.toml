@@ -1,6 +1,0 @@
-[module]
-name = "ph1_06_ua"
-entry = "ph1_06_ua.ato:Ph106Ua"
-tags = []
-description = "CONN HEADER VERT 6POS 2.54MM"
-datasheet = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/22522227e000bb8d8f26a3580c1bb98b.pdf"

@@ -152,7 +152,7 @@ void setup() {
   digitalWrite(in4, LOW);
 
 
-  myservo1.attach(4);  // Assigns data pin to your servo object, must be digital port
+  myservo1.attach(2);  // Assigns data pin to your servo object, must be digital port
   myservo2.attach(3);
   
   myservo1.write(90);  // ungripped position for servo1

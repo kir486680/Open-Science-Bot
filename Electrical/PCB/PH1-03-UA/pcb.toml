@@ -1,6 +1,0 @@
-[module]
-name = "ph1_03_ua"
-entry = "ph1_03_ua.ato:Ph103Ua"
-tags = []
-description = "CONN HEADER VERT 3POS 2.54MM"
-datasheet = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/34c52fbb4019bb4b288b881302863af3.pdf"

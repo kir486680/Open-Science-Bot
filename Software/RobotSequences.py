@@ -14,6 +14,44 @@ class RobotSequences:
         self.arduino = arduino
         self.potentiostat = potentiostat
     
+    def home_robot(self):
+        """
+        Homes the robot to establish coordinate system reference
+        """
+        with self.task_manager.execute_sequence("home_robot"):
+            self.task_manager.add_task(Task(
+                self.printer.home,
+                args=(),
+                description="Home all axes to establish reference position"
+            ))
+            # Small delay after homing to ensure completion
+            self.task_manager.add_task(Task(sleep, args=(2,), description="Post-homing delay"))
+    
+    def wait_for_user_confirmation(self):
+        """
+        Waits for user confirmation before proceeding with the sequence
+        """
+        print("\n" + "="*60)
+        print("ROBOT HOMING COMPLETE")
+        print("="*60)
+        print("Please set up the following before proceeding:")
+        print("• Prepare the electrochemical bath")
+        print("• Position the electrodes properly")
+        print("• Ensure all solutions are ready")
+        print("• Verify the workspace is clear")
+        print("="*60)
+        
+        while True:
+            user_input = input("Ready to proceed? Enter 'y' or 'yes' to continue: ").strip().lower()
+            if user_input in ['y', 'yes']:
+                print("Proceeding with robot sequence...")
+                break
+            elif user_input in ['n', 'no', 'exit', 'quit']:
+                print("Sequence cancelled by user.")
+                exit(0)
+            else:
+                print("Please enter 'y'/'yes' to continue or 'n'/'no' to cancel.")
+    
     def move_to_start(self):
         """
         Moves the robot to the start position
@@ -104,6 +142,36 @@ class RobotSequences:
             self.task_manager.add_task(Task(sleep, args=(1,)))
             self.task_manager.add_task(Task(self.arduino.pumpA, args=(25,)))
             self.task_manager.add_task(Task(sleep, args=(3,)))
+
+    def pump_A_forward(self, volume_ml):
+        """
+        Pumps liquid using pump A in forward direction with calibrated volume
+        Args:
+            volume_ml: Volume to pump in milliliters
+        """
+        with self.task_manager.execute_sequence("pump_A_forward"):
+            self.task_manager.add_task(Task(sleep, args=(1,), description="Pre-pump delay"))
+            self.task_manager.add_task(Task(
+                self.arduino.pumpA, 
+                args=(volume_ml, "forward"),
+                description=f"Pump A forward {volume_ml}mL"
+            ))
+            self.task_manager.add_task(Task(sleep, args=(2,), description="Post-pump delay"))
+
+    def pump_B_forward(self, volume_ml):
+        """
+        Pumps liquid using pump B in forward direction with calibrated volume
+        Args:
+            volume_ml: Volume to pump in milliliters
+        """
+        with self.task_manager.execute_sequence("pump_B_forward"):
+            self.task_manager.add_task(Task(sleep, args=(1,), description="Pre-pump delay"))
+            self.task_manager.add_task(Task(
+                self.arduino.pumpB, 
+                args=(volume_ml, "forward"),
+                description=f"Pump B forward {volume_ml}mL"
+            ))
+            self.task_manager.add_task(Task(sleep, args=(2,), description="Post-pump delay"))
 
     def retract_head(self):
         """
