@@ -4,7 +4,7 @@
         "baudrate": 115200
     },
     "arduino": {
-        "port": "/dev/tty.usbmodem112201",
+        "port": "/dev/tty.usbmodem112401",
         "baudrate": 9600,
         "pump_calibration": {
             "pumpA_forward": {

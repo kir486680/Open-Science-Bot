@@ -25,25 +25,25 @@ def main():
 
     # Example sequence
     try:
-        robot_sequences.home_robot()
+        #robot_sequences.home_robot()
         
         # Wait for user to set up bath and electrodes
-        robot_sequences.wait_for_user_confirmation()
+        #robot_sequences.wait_for_user_confirmation()
         
-        #robot_sequences.move_to_start()
-        robot_sequences.grip_electrodes()
-        robot_sequences.move_to_bath()
+        # robot_sequences.move_to_start()
+        # robot_sequences.grip_electrodes()
+        # robot_sequences.move_to_bath()
         
-        # Pump operations with calibrated volumes
-        robot_sequences.pump_A_forward(10.0)  # Pump 10mL with pump A
-        robot_sequences.pump_B_forward(15.0)  # Pump 15mL with pump B
+        # # Pump operations with calibrated volumes
+        #robot_sequences.pump_A_forward(10.0)  # Pump 10mL with pump A
+        robot_sequences.pump_B_forward(50.0)  # Pump 15mL with pump B
         
-        # Run an electrochemical test
-        sample_name = "test_sample"
-        robot_sequences.run_electrochemical_sequence(sample_name)
+        # # Run an electrochemical test
+        # sample_name = "test_sample"
+        # robot_sequences.run_electrochemical_sequence(sample_name)
         
-        robot_sequences.ungrip_both_electrodes()
-        robot_sequences.retract_head()
+        # robot_sequences.ungrip_both_electrodes()
+        # robot_sequences.retract_head()
     finally:
         # Clean up
         if potentiostat:

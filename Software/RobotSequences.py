@@ -289,7 +289,7 @@ class RobotSequences:
             self.setup_pstat_test()
             
             # 1. Initial OCP
-            ocp_data = self.measure_ocp(sample_name + "_initial", duration_s=300, save_data=save_data)
+            ocp_data = self.measure_ocp(sample_name + "_initial", duration_s=10, save_data=save_data)
             
             # 2. LPR
             lpr_data = self.perform_lpr(sample_name, save_data=save_data)
@@ -298,7 +298,7 @@ class RobotSequences:
             self.task_manager.add_task(Task(self.potentiostat.reset, description="Reset potentiostat"))
             
             # 3. Short OCP
-            ocp_data_2 = self.measure_ocp(sample_name + "_second", duration_s=100, save_data=save_data)
+            ocp_data_2 = self.measure_ocp(sample_name + "_second", duration_s=10, save_data=save_data)
             
             # 4. CV
             cv_data = self.perform_cv(sample_name, save_data=save_data)

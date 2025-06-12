@@ -6,8 +6,8 @@ Servo myservo2;
 const int ledPin = 13;
 // Motor A connections
 int enA = 9;
-int in1 = 8;
-int in2 = 7;
+int in1 = 7;
+int in2 = 8;
 // Motor B connections
 int enB = 4;
 int in3 = 5;
