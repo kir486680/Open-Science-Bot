@@ -21,6 +21,8 @@ The system features:
 
 ## Getting Started
 
+**Important:** If you are using Ender 3 Pro gantry, power on the 3D printer gantry first, then connect the USB cable. Othwerwise the homing is not guaranteed to succeed. 
+
 1. Set up the hardware components according to the Mechanical and Electronics documentation
 2. Install the required software dependencies
 3. Configure the device connections in `devices.json`

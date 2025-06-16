@@ -110,7 +110,7 @@ class BayesianOptimizer:
             print(f"\nBayesian optimization selected volume: {vol:.2f}mL")
             self.pump_vinegar(vol)
             
-            ocp_data = self.measure_ocp(duration=10)
+            ocp_data = self.measure_ocp(duration=100)
             measured_ocp = ocp_data['mean_potential']
             
             error = abs(measured_ocp - target_ocp)
@@ -153,7 +153,7 @@ class BayesianOptimizer:
             
             print("\nPerforming final verification measurement...")
             self.pump_vinegar(best_volume)
-            final_ocp_data = self.measure_ocp(duration=5)
+            final_ocp_data = self.measure_ocp(duration=100)
             final_ocp = final_ocp_data['mean_potential']
             print(f"Final measured OCP: {final_ocp:.3f} V")
             

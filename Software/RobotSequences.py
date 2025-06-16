@@ -24,8 +24,16 @@ class RobotSequences:
                 args=(),
                 description="Home all axes to establish reference position"
             ))
-            # Small delay after homing to ensure completion
+            # Delay after homing to ensure completion
             self.task_manager.add_task(Task(sleep, args=(2,), description="Post-homing delay"))
+            
+            self.task_manager.add_task(Task(
+                self.printer.move_to,
+                args=(None, None, 120, 4000),
+                description="Move Z to safe height"
+            ))
+
+            self.task_manager.add_task(Task(sleep, args=(2,), description="Post-clearance delay"))
     
     def wait_for_user_confirmation(self):
         """
@@ -64,7 +72,7 @@ class RobotSequences:
             ))
             self.task_manager.add_task(Task(
                 self.printer.move_to,
-                args=(90.9, None, None, 4000),
+                args=(91.1, None, None, 4000),
                 description="Move X to start position"
             ))
             self.task_manager.add_task(Task(
